@@ -15,10 +15,10 @@ Route::group(['prefix' => 'user'], function () {
 });
 
 Route::group(['prefix' => 'tutor'], function () {
-    Route::post('login', [AuthUTutorsController::class, 'login']);
+    Route::post('login', [AuthTutorsController::class, 'login']);
     Route::group(['middleware' => 'auth:tutor'], function () {
-        Route::get('me', [AuthUTutorsController::class, 'me']);
-        Route::post('logout', [AuthUTutorsController::class, 'logout']);
+        Route::get('me', [AuthTutorsController::class, 'me']);
+        Route::post('logout', [AuthTutorsController::class, 'logout']);
     });
 });
 

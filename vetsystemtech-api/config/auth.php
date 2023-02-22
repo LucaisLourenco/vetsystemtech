@@ -36,7 +36,7 @@ return [
     */
 
     'guards' => [
-        'user' => [
+        'api' => [
             'driver' => 'jwt',
             'provider' => 'users',
         ],
@@ -71,6 +71,14 @@ return [
         'users' => [
             'driver' => 'eloquent',
             'model' => App\Models\User::class,
+        ],
+        'tutors' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\Tutor::class,
+        ],
+        'veterinarians' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\Veterinarian::class,
         ],
 
         // 'users' => [
