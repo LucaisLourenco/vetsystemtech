@@ -36,9 +36,17 @@ return [
     */
 
     'guards' => [
-        'api' => [
+        'user' => [
             'driver' => 'jwt',
             'provider' => 'users',
+        ],
+        'tutor' => [
+            'driver' => 'jwt',
+            'provider' => 'tutors',
+        ],
+        'veterinarian' => [
+            'driver' => 'jwt',
+            'provider' => 'veterinarians',
         ],
     ],
 
