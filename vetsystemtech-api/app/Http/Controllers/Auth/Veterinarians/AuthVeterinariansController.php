@@ -14,8 +14,8 @@ class AuthVeterinariansController extends Controller
         $credentials = $request->only('username', 'password');
 
         try {
-            if (!$token = JWTAuth::attempt($credentials)) {
-                return response()->json(['error' => 'Credenciais inválidas.'], 400);
+            if (!$token = auth('veterinarian')->attempt($credentials)) {
+                return response()->json(['error' => 'Credenciais inválidas.'], 401);
             }
         } catch (JWTException $e) {
             return response()->json(['error' => 'Não foi possível criar o token.'], 500);
@@ -26,14 +26,22 @@ class AuthVeterinariansController extends Controller
 
     public function me()
     {
-        $veterinarian = JWTAuth::parseToken()->authenticate();
+        try {
+            $veterinarian = auth('veterinarian')->user();
+        } catch (JWTException $e) {
+            return response()->json(['error' => 'Não foi possível obter as informações do usuário.'], 500);
+        }
 
         return response()->json(compact('veterinarian'));
     }
 
     public function logout()
     {
-        JWTAuth::invalidate(JWTAuth::getToken());
+        try {
+            auth('veterinarian')->logout();
+        } catch (JWTException $e) {
+            return response()->json(['error' => 'Não foi possível sair.'], 500);
+        }
 
         return response()->json(['message' => 'Veterinário desconectado com sucesso.']);
     }

@@ -14,8 +14,8 @@ class AuthUsersController extends Controller
         $credentials = $request->only('username', 'password');
 
         try {
-            if (!$token = JWTAuth::attempt($credentials)) {
-                return response()->json(['error' => 'Credenciais inválidas.'], 400);
+            if (!$token = auth('api')->attempt($credentials)) {
+                return response()->json(['error' => 'Credenciais inválidas.'], 401);
             }
         } catch (JWTException $e) {
             return response()->json(['error' => 'Não foi possível criar o token.'], 500);
@@ -26,14 +26,22 @@ class AuthUsersController extends Controller
 
     public function me()
     {
-        $user = JWTAuth::parseToken()->authenticate();
+        try {
+            $user = auth('api')->user();
+        } catch (JWTException $e) {
+            return response()->json(['error' => 'Não foi possível obter as informações do usuário.'], 500);
+        }
 
         return response()->json(compact('user'));
     }
 
     public function logout()
     {
-        JWTAuth::invalidate(JWTAuth::getToken());
+        try {
+            auth('api')->logout();
+        } catch (JWTException $e) {
+            return response()->json(['error' => 'Não foi possível sair.'], 500);
+        }
 
         return response()->json(['message' => 'Usuário desconectado com sucesso.']);
     }

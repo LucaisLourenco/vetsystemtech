@@ -8,7 +8,7 @@ use App\Http\Controllers\Auth\Veterinarians\AuthVeterinariansController;
 
 Route::group(['prefix' => 'user'], function () {
     Route::post('login', [AuthUsersController::class, 'login']);
-    Route::group(['middleware' => 'auth:user'], function () {
+    Route::group(['middleware' => 'auth.jwt:api'], function () {
         Route::get('me', [AuthUsersController::class, 'me']);
         Route::post('logout', [AuthUsersController::class, 'logout']);
     });
@@ -16,7 +16,7 @@ Route::group(['prefix' => 'user'], function () {
 
 Route::group(['prefix' => 'tutor'], function () {
     Route::post('login', [AuthTutorsController::class, 'login']);
-    Route::group(['middleware' => 'auth:tutor'], function () {
+    Route::group(['middleware' => 'auth.jwt:tutor'], function () {
         Route::get('me', [AuthTutorsController::class, 'me']);
         Route::post('logout', [AuthTutorsController::class, 'logout']);
     });
@@ -24,7 +24,7 @@ Route::group(['prefix' => 'tutor'], function () {
 
 Route::group(['prefix' => 'veterinarian'], function () {
     Route::post('login', [AuthVeterinariansController::class, 'login']);
-    Route::group(['middleware' => 'auth:veterinarian'], function () {
+    Route::group(['middleware' => 'auth.jwt:veterinarian'], function () {
         Route::get('me', [AuthVeterinariansController::class, 'me']);
         Route::post('logout', [AuthVeterinariansController::class, 'logout']);
     });
