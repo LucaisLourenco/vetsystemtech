@@ -2,14 +2,17 @@
   <mat-card>
     <mat-card-title>Login Gestão VetSystem</mat-card-title>
     <mat-card-content>
-      <form>
+      <form [formGroup]="form">
         <mat-form-field>
-          <input matInput placeholder="Usuário" />
+          <mat-label>Usuário</mat-label>
+          <input matInput placeholder="Usuário" formControlName="username" type="text"/>
         </mat-form-field>
         <mat-form-field>
-          <input matInput placeholder="Senha" type="password" />
+          <mat-label>Senha</mat-label>
+          <input matInput placeholder="Senha" formControlName="password" type="password" />
         </mat-form-field>
-        <button mat-raised-button>Entrar</button>
+        <div *ngIf="errorMessage" class="alert alert-danger">{{errorMessage}}</div>
+        <button mat-raised-button (click)="onSubmit()" [disabled]="!form.valid">Entrar</button>
       </form>
     </mat-card-content>
   </mat-card>
