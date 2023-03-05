@@ -3,11 +3,14 @@ import { RouterModule, Routes } from '@angular/router';
 
 import { HomeComponent } from './components/home/home.component';
 import { UserLoginComponent } from './components/user/user-login/user-login.component';
+import { UserGuard } from './guards/user/disconnected/user.guard';
+import { DisconnectedUserGuard } from './guards/user/logged/disconnected-user.guard';
+
 
 const routes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: 'home' },
-  { path: 'home', component: HomeComponent },
-  { path: 'user/login', component: UserLoginComponent }
+  { path: 'home', component: HomeComponent, canActivate: [UserGuard] },
+  { path: 'user/login', component: UserLoginComponent, canActivate: [DisconnectedUserGuard] }
 ];
 
 @NgModule({
