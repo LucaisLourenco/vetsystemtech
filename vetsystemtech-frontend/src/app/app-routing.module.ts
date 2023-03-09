@@ -10,7 +10,7 @@ import { DisconnectedUserGuard } from './guards/user/logged/disconnected-user.gu
 const routes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: 'home' },
   { path: 'home', component: HomeComponent, canActivate: [UserGuard] },
-  { path: 'user/login', component: UserLoginComponent, canActivate: [DisconnectedUserGuard] }
+  { path: 'login', component: UserLoginComponent, canActivate: [DisconnectedUserGuard] }
 ];
 
 @NgModule({
