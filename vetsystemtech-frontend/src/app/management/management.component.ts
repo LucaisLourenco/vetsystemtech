@@ -1,3 +1,4 @@
+import { AuthUserService } from 'src/app/management/services/user/auth/auth-user.service';
 import { Component } from '@angular/core';
 
 @Component({
@@ -6,5 +7,11 @@ import { Component } from '@angular/core';
   styleUrls: ['./management.component.scss']
 })
 export class ManagementComponent {
+
+  constructor(private service: AuthUserService) { }
+
+  showSidebar() {
+    return this.service.isAuthenticated();
+  }
 
 }
