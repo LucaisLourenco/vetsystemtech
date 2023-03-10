@@ -20,7 +20,7 @@ mat-card-title {
   font-size: 2rem;
   text-align: center;
   margin-bottom: 1rem;
-  text-shadow: 2px 2px 4px #888;
+  text-shadow: 2px 2px 4px #3d3d3d;
   font-weight: 600;
   color: #FFD980 ;
 }
@@ -33,18 +33,11 @@ button {
   margin-top: 1rem;
   width: 100%;
   border-radius: 5px;
-  background-color: #FFD980 ;
-  color: #fff;
+  background: linear-gradient(to bottom right, #FFF5CB, #FFE599);
+  color: #494646 !important;
   font-size: 1rem;
   text-transform: uppercase;
   transition: all 0.2s ease-in-out;
-}
-
-button:hover {
-  cursor: pointer;
-  background-color: #fff;
-  color: #FFD980 ;
-  box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.2);
 }
 
 /* Estilos para telas menores que 600px */
