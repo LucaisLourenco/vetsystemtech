@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { SidebarTutorComponent } from './sidebar-tutor.component';
+import { ManagementComponent } from './management.component';
 
-describe('SidebarTutorComponent', () => {
-  let component: SidebarTutorComponent;
-  let fixture: ComponentFixture<SidebarTutorComponent>;
+describe('ManagementComponent', () => {
+  let component: ManagementComponent;
+  let fixture: ComponentFixture<ManagementComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ SidebarTutorComponent ]
+      declarations: [ ManagementComponent ]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(SidebarTutorComponent);
+    fixture = TestBed.createComponent(ManagementComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

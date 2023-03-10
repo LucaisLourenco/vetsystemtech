@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { NonNullableFormBuilder, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
-import { AuthUserService } from 'src/app/services/user/auth/auth-user.service';
+import { AuthUserService } from 'src/app/management/services/user/auth/auth-user.service';
 
 @Component({
   selector: 'app-user-login',
