@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { NonNullableFormBuilder, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { AuthUserService } from 'src/app/management/services/user/auth/auth-user.service';
 
 @Component({
@@ -10,6 +10,7 @@ import { AuthUserService } from 'src/app/management/services/user/auth/auth-user
   styleUrls: ['./user-login.component.scss'],
 })
 export class UserLoginComponent {
+
   public errorMessage: string | null = null;
 
   form = this.formBuilder.group({
@@ -21,7 +22,8 @@ export class UserLoginComponent {
     private snackBar: MatSnackBar,
     private formBuilder: NonNullableFormBuilder,
     private service: AuthUserService,
-    private router: Router
+    private router: Router,
+    private route: ActivatedRoute
   ) { }
 
   onSubmit() {
@@ -42,5 +44,9 @@ export class UserLoginComponent {
 
   private onError(errorMessage: string) {
     this.snackBar.open(errorMessage, '', { duration: 5000 });
+  }
+
+  onResetPassword() {
+    this.router.navigate(['reset-password']);
   }
 }

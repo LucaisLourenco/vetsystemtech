@@ -14,6 +14,11 @@
         <div *ngIf="errorMessage" class="alert alert-danger">{{errorMessage}}</div>
         <button mat-button (click)="onSubmit()" [disabled]="!form.valid">Entrar</button>
       </form>
+
+      <div class="link">
+        <a (click)="onResetPassword()">Esqueceu sua senha?</a>
+      </div>
+
     </mat-card-content>
   </mat-card>
 </div>
