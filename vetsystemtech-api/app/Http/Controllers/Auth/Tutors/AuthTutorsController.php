@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Tymon\JWTAuth\Exceptions\JWTException;
 use Tymon\JWTAuth\Facades\JWTAuth;
+use App\MyApp;
 
 class AuthTutorsController extends Controller
 {
@@ -15,10 +16,10 @@ class AuthTutorsController extends Controller
 
         try {
             if (!$token = auth('tutor')->attempt($credentials)) {
-                return response()->json(['error' => 'Credenciais inválidas.'], 401);
+                return response()->json(['error' => MyApp::ERROR_CREDENCIAIS], 401);
             }
         } catch (JWTException $e) {
-            return response()->json(['error' => 'Não foi possível criar o token.'], 500);
+            return response()->json(['error' => MyApp::ERROR_GERAR_TOKEN], 500);
         }
 
         return response()->json(compact('token'));
@@ -29,7 +30,7 @@ class AuthTutorsController extends Controller
         try {
             $tutor = auth('tutor')->user();
         } catch (JWTException $e) {
-            return response()->json(['error' => 'Não foi possível obter as informações do usuário.'], 500);
+            return response()->json(['error' => MyApp::ERROR_GERAR_CONFIG_USER], 500);
         }
 
         return response()->json(compact('tutor'));
@@ -40,9 +41,9 @@ class AuthTutorsController extends Controller
         try {
             auth('tutor')->logout();
         } catch (JWTException $e) {
-            return response()->json(['error' => 'Não foi possível sair.'], 500);
+            return response()->json(['error' => MyApp::ERROR_LOGOFF], 500);
         }
 
-        return response()->json(['message' => 'Veterinário desconectado com sucesso.']);
+        return response()->json(['message' => MyApp::SUCCESS_LOGOFF_CLIENTE]);
     }
 }
