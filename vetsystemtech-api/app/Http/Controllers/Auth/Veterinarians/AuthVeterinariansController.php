@@ -16,10 +16,10 @@ class AuthVeterinariansController extends Controller
 
         try {
             if (!$token = auth('veterinarian')->attempt($credentials)) {
-                return response()->json(['error' => MyApp::ERROR_CREDENCIAIS], 401);
+                return response()->json(['error' => MyApp::VTR001], 401);
             }
         } catch (JWTException $e) {
-            return response()->json(['error' => MyApp::ERROR_GERAR_TOKEN], 500);
+            return response()->json(['error' => MyApp::VTR002], 500);
         }
 
         return response()->json(compact('token'));
@@ -30,7 +30,7 @@ class AuthVeterinariansController extends Controller
         try {
             $veterinarian = auth('veterinarian')->user();
         } catch (JWTException $e) {
-            return response()->json(['error' => MyApp::ERROR_GERAR_CONFIG_USER], 500);
+            return response()->json(['error' => MyApp::VTR003], 500);
         }
 
         return response()->json(compact('veterinarian'));
@@ -41,9 +41,9 @@ class AuthVeterinariansController extends Controller
         try {
             auth('veterinarian')->logout();
         } catch (JWTException $e) {
-            return response()->json(['error' => MyApp::ERROR_LOGOFF], 500);
+            return response()->json(['error' => MyApp::VTR004], 500);
         }
 
-        return response()->json(['message' => MyApp::SUCCESS_LOGOFF_VETERINARIO]);
+        return response()->json(['message' => MyApp::VTR005]);
     }
 }

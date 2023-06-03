@@ -4,12 +4,24 @@ namespace App;
 
 class MyApp {
 
-    //MENSAGENS DE AUTENTICAÇÃO
-    const ERROR_GERAR_TOKEN = 'Não foi possível criar o Token.';
-    const ERROR_GERAR_CONFIG_USER = 'Não foi possível obter as informações do usuário.';
-    const ERROR_LOGOFF = 'Não foi possível sair.';
-    const SUCCESS_LOGOFF_VETERINARIO = 'Veterinário desconectado com sucesso.';
-    const SUCCESS_LOGOFF_CLIENTE = 'Cliente desconectado com sucesso.';
-    const SUCCESS_LOGOFF_USER = 'Usuário desconectado com sucesso';
-    const ERROR_CREDENCIAIS = 'Credenciais inválidas';
+    //MENSAGENS DE AUTENTICAÇÃO CLIENTE
+    const CLT001 = 'CLT001: Credenciais inválidas';
+    const CLT002 = 'CLT002: Não foi possível criar o Token.';
+    const CLT003 = 'CLT003: Não foi possível obter as informações do usuário.';
+    const CLT004 = 'CLT004: Não foi possível sair.';
+    const CLT005 = 'CLT005: Cliente desconectado com sucesso.';
+
+    //MENSAGENS DE AUTENTICAÇÃO VETERINÁRIO
+    const VTR001 = 'VTR001: Credenciais inválidas';
+    const VTR002 = 'VTR002: Não foi possível criar o Token.';
+    const VTR003 = 'VTR003: Não foi possível obter as informações do usuário.';
+    const VTR004 = 'VTR004: Não foi possível sair.';
+    const VTR005 = 'VTR005: Veterinário desconectado com sucesso.';
+
+    //MENSAGENS DE AUTENTICAÇÃO TUTOR
+    const USR001 = 'USR001: Credenciais inválidas';
+    const USR002 = 'USR002: Não foi possível criar o Token.';
+    const USR003 = 'USR003: Não foi possível obter as informações do usuário.';
+    const USR004 = 'USR004: Não foi possível sair.';
+    const USR005 = 'USR005: Usuário desconectado com sucesso';
 }

@@ -16,10 +16,10 @@ class AuthUsersController extends Controller
 
         try {
             if (!$token = auth('api')->attempt($credentials)) {
-                return response()->json(['error' => MyApp::ERROR_CREDENCIAIS], 401);
+                return response()->json(['error' => MyApp::USR001], 401);
             }
         } catch (JWTException $e) {
-            return response()->json(['error' => MyApp::ERROR_GERAR_TOKEN], 500);
+            return response()->json(['error' => MyApp::USR002], 500);
         }
 
         return response()->json(compact('token'));
@@ -30,7 +30,7 @@ class AuthUsersController extends Controller
         try {
             $user = auth('api')->user();
         } catch (JWTException $e) {
-            return response()->json(['error' => MyApp::ERROR_GERAR_CONFIG_USER], 500);
+            return response()->json(['error' => MyApp::USR003], 500);
         }
 
         return response()->json(compact('user'));
@@ -41,9 +41,9 @@ class AuthUsersController extends Controller
         try {
             auth('api')->logout();
         } catch (JWTException $e) {
-            return response()->json(['error' => MyApp::ERROR_LOGOFF], 500);
+            return response()->json(['error' => MyApp::USR004], 500);
         }
 
-        return response()->json(['message' => MyApp::SUCCESS_LOGOFF_USER]);
+        return response()->json(['message' => MyApp::USR005]);
     }
 }
