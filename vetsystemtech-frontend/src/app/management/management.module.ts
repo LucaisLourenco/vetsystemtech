@@ -9,13 +9,15 @@ import { UserLoginComponent } from './components/user/user-login/user-login.comp
 import { ManagementRoutingModule } from './management-routing.module';
 import { ManagementComponent } from './management.component';
 import { UserResetPasswordComponent } from './components/user/user-reset-password/user-reset-password.component';
+import { SidebarComponent } from './components/sidebar/sidebar.component';
 
 @NgModule({
   declarations: [
     ManagementComponent,
     UserLoginComponent,
     HomeComponent,
-    UserResetPasswordComponent
+    UserResetPasswordComponent,
+    SidebarComponent
   ],
   imports: [
     CommonModule,
