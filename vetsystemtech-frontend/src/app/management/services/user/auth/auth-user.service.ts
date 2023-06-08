@@ -1,9 +1,9 @@
-import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Observable, throwError } from 'rxjs';
-import { catchError, tap } from 'rxjs/operators';
+import {Injectable} from '@angular/core';
+import {HttpClient, HttpHeaders} from '@angular/common/http';
+import {Observable, throwError} from 'rxjs';
+import {catchError, tap} from 'rxjs/operators';
 import jwt_decode from 'jwt-decode';
-import { environment } from 'src/environments/environment.development';
+import {environment} from 'src/environments/environment.development';
 
 @Injectable({
   providedIn: 'root',
@@ -12,11 +12,12 @@ export class AuthUserService {
 
   apiUrl = environment.apiUrl;
 
-  constructor(private httpClient: HttpClient) { }
+  constructor(private httpClient: HttpClient) {
+  }
 
   login(username: string, password: string): Observable<any> {
     return this.httpClient
-      .post<any>(`${this.apiUrl}/user/login`, { username: username, password: password })
+      .post<any>(`${this.apiUrl}/user/login`, {username: username, password: password})
       .pipe(
         tap((response) => {
           localStorage.setItem('userToken', response.token); // Armazena o token JWT no localStorage
@@ -26,8 +27,12 @@ export class AuthUserService {
   }
 
   // Função para fazer o logout do usuário
-  logout(): void {
+  logout() {
     localStorage.removeItem('userToken'); // Remove o token JWT do localStorage
+    return new Observable(observer => {
+      observer.next(); // Notifica o sucesso do logoff
+      observer.complete(); // Completa o Observable
+    });
   }
 
   // Função para verificar se o usuário está autenticado

@@ -1,10 +1,15 @@
-<div class="container-fluid">
-  <div class="row">
-    <div class="col-2" id="teste" *ngIf="showSidebar()">
-      <app-sidebar></app-sidebar>
+<div [ngSwitch]="showSidebar()">
+  <div class="container-fluid" *ngSwitchCase="true">
+    <div class="row">
+      <div class="col-2" id="sideBar">
+        <app-sidebar></app-sidebar>
+      </div>
+      <div class="col-10">
+        <router-outlet></router-outlet>
+      </div>
     </div>
-    <div class="col-10">
-      <router-outlet></router-outlet>
-    </div>
+  </div>
+  <div *ngSwitchDefault>
+    <router-outlet></router-outlet>
   </div>
 </div>
