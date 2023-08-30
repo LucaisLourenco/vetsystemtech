@@ -2,9 +2,9 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\Auth\Users\AuthUsersController;
-use App\Http\Controllers\Auth\Tutors\AuthTutorsController;
-use App\Http\Controllers\Auth\Veterinarians\AuthVeterinariansController;
+use App\Http\Controllers\Auth\Usuario\AuthUsersController;
+use App\Http\Controllers\Auth\Cliente\AuthTutorsController;
+use App\Http\Controllers\Auth\Veterinario\AuthVeterinariansController;
 
 Route::group(['prefix' => 'user'], function () {
     Route::post('login', [AuthUsersController::class, 'login']);

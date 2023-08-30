@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Models;
+namespace App\Models\Permissao;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -15,10 +15,10 @@ class Permission extends Model
     protected $fillable = ['role_id', 'resource_id'];
 
     public function resource() {
-        return $this->belongsTo('\App\Models\Resource');
+        return $this->belongsTo('\App\Models\Recurso\Resource');
     }
 
     public function role() {
-        return $this->belongsTo('\App\Models\Role');
+        return $this->belongsTo('\App\Models\Papel\Role');
     }
 }

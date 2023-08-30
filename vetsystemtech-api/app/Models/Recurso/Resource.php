@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Models;
+namespace App\Models\Recurso;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class Specialty extends Model
+class Resource extends Model
 {
     use HasFactory, SoftDeletes;
 

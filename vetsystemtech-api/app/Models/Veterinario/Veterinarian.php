@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Models;
+namespace App\Models\Veterinario;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -9,17 +9,18 @@ use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 use Tymon\JWTAuth\Contracts\JWTSubject;
 
-class Tutor extends Authenticatable implements JWTSubject
+class Veterinarian extends Authenticatable implements JWTSubject
 {
     use HasApiTokens, HasFactory, Notifiable, SoftDeletes;
 
     protected $dates = ['deleted_at'];
 
-    protected $guard = 'tutor';
+    protected $guard = 'veterinarian';
 
     protected $fillable = [
         'name',
         'username',
+        'crmv',
         'cpf',
         'gender_id',
         'email',

@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Models;
+namespace App\Models\Genero;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class Resource extends Model
+class Gender extends Model
 {
     use HasFactory, SoftDeletes;
 

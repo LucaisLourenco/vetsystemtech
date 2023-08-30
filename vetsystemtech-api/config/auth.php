@@ -70,15 +70,15 @@ return [
     'providers' => [
         'users' => [
             'driver' => 'eloquent',
-            'model' => App\Models\User::class,
+            'model' => \App\Models\Usuario\User::class,
         ],
         'tutors' => [
             'driver' => 'eloquent',
-            'model' => App\Models\Tutor::class,
+            'model' => \App\Models\Cliente\Tutor::class,
         ],
         'veterinarians' => [
             'driver' => 'eloquent',
-            'model' => App\Models\Veterinarian::class,
+            'model' => \App\Models\Veterinario\Veterinarian::class,
         ],
 
         // 'users' => [

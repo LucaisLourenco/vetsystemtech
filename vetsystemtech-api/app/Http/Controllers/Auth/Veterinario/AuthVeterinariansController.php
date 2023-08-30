@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Auth\Veterinarians;
+namespace App\Http\Controllers\Auth\Veterinario;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;

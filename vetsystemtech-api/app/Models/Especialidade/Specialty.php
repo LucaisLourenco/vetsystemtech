@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Models;
+namespace App\Models\Especialidade;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class Gender extends Model
+class Specialty extends Model
 {
     use HasFactory, SoftDeletes;
 
