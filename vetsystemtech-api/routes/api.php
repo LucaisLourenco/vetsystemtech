@@ -11,6 +11,7 @@ Route::group(['prefix' => 'user'], function () {
     Route::group(['middleware' => 'auth.jwt:api'], function () {
         Route::get('me', [AuthUsersController::class, 'me']);
         Route::post('logout', [AuthUsersController::class, 'logout']);
+        Route::post('createTutor', [\App\Http\Controllers\Cliente\TutorController::class, 'store']);
     });
 });
 
