@@ -6,12 +6,15 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
+    const TABLE = 'resources';
+
+    static string $name = 'name';
 
     public function up(): void
     {
-        Schema::create('resources', function (Blueprint $table) {
+        Schema::create(self::TABLE, function (Blueprint $table) {
             $table->id();
-            $table->string('name');
+            $table->string(static::$name);
             $table->softDeletes();
             $table->timestamps();
         });
@@ -19,6 +22,6 @@ return new class extends Migration
 
     public function down(): void
     {
-        Schema::dropIfExists('resources');
+        Schema::dropIfExists(self::TABLE);
     }
 };

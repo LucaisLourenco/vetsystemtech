@@ -6,24 +6,22 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
-    /**
-     * Run the migrations.
-     */
+    const TABLE = 'specialties';
+
+    static string $name = 'name';
+
     public function up(): void
     {
-        Schema::create('specialties', function (Blueprint $table) {
+        Schema::create(self::TABLE, function (Blueprint $table) {
             $table->id();
-            $table->string('name');
+            $table->string(static::$name);
             $table->softDeletes();
             $table->timestamps();
         });
     }
 
-    /**
-     * Reverse the migrations.
-     */
     public function down(): void
     {
-        Schema::dropIfExists('specialties');
+        Schema::dropIfExists(self::TABLE);
     }
 };
