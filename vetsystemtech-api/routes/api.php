@@ -1,17 +1,17 @@
 <?php
 
+use App\Http\Controllers\Auth\Tutor\AuthTutorsController;
+use App\Http\Controllers\Auth\User\AuthUsersController;
+use App\Http\Controllers\Auth\Veterinarian\AuthVeterinariansController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\Auth\Usuario\AuthUsersController;
-use App\Http\Controllers\Auth\Cliente\AuthTutorsController;
-use App\Http\Controllers\Auth\Veterinario\AuthVeterinariansController;
 
 Route::group(['prefix' => 'user'], function () {
     Route::post('login', [AuthUsersController::class, 'login']);
     Route::group(['middleware' => 'auth.jwt:api'], function () {
         Route::get('me', [AuthUsersController::class, 'me']);
         Route::post('logout', [AuthUsersController::class, 'logout']);
-        Route::post('createTutor', [\App\Http\Controllers\Cliente\TutorController::class, 'store']);
+        Route::post('createTutor', [\App\Http\Controllers\Tutor\TutorController::class, 'store']);
     });
 });
 
