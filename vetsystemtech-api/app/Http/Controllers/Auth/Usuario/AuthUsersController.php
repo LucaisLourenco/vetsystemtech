@@ -2,48 +2,49 @@
 
 namespace App\Http\Controllers\Auth\Usuario;
 
+use App\Http\Controllers\Auth\Usuario\Interface\VariableAuthUser;
 use App\Http\Controllers\Controller;
+use App\Messages\MensagemUsuario;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Tymon\JWTAuth\Exceptions\JWTException;
-use Tymon\JWTAuth\Facades\JWTAuth;
-use App\MyApp;
 
-class AuthUsersController extends Controller
+class AuthUsersController extends Controller implements VariableAuthUser
 {
-    public function login(Request $request)
+    public function login(Request $request): JsonResponse
     {
-        $credentials = $request->only('username', 'password');
+        $credentials = $request->only(self::USERNAME, self::PASSWORD);
 
         try {
-            if (!$token = auth('api')->attempt($credentials)) {
-                return response()->json(['error' => MyApp::USR001], 401);
+            if (!$token = auth(self::API)->attempt($credentials)) {
+                return response()->json([self::ERROR => MensagemUsuario::USR001], 401);
             }
         } catch (JWTException $e) {
-            return response()->json(['error' => MyApp::USR002], 500);
+            return response()->json([self::ERROR => MensagemUsuario::USR002], 500);
         }
 
-        return response()->json(compact('token'));
+        return response()->json($token);
     }
 
-    public function me()
+    public function me(): JsonResponse
     {
         try {
-            $user = auth('api')->user();
+            $user = auth(self::API)->user();
         } catch (JWTException $e) {
-            return response()->json(['error' => MyApp::USR003], 500);
+            return response()->json([self::ERROR => MensagemUsuario::USR003], 500);
         }
 
-        return response()->json(compact('user'));
+        return response()->json($user);
     }
 
-    public function logout()
+    public function logout(): JsonResponse
     {
         try {
-            auth('api')->logout();
+            auth(self::API)->logout();
         } catch (JWTException $e) {
-            return response()->json(['error' => MyApp::USR004], 500);
+            return response()->json([self::ERROR => MensagemUsuario::USR004], 500);
         }
 
-        return response()->json(['message' => MyApp::USR005]);
+        return response()->json([self::MESSAGE => MensagemUsuario::USR005]);
     }
 }
