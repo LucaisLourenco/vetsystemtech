@@ -16,7 +16,7 @@ class SeedUserLogin extends Seeder
         $user = (new User())->fill([
             'name' => 'Lucas Lourenço',
             'username' => 'lucas.lourenco',
-            'cpf' => '092.866.819-33',
+            'cpf' => '09286681933',
             'role_id' => 1,
             'gender_id' => 1,
             'email' => 'luccaas.lourenco@gmail.com',

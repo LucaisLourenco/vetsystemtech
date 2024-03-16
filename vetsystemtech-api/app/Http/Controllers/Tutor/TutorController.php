@@ -2,14 +2,19 @@
 
 namespace App\Http\Controllers\Tutor;
 
+use App\Enum\Gender\EnumGenders;
+use App\Enum\Role\EnumRoles;
+use App\Enum\System\EnumGeneralStatus;
+use App\Http\Controllers\Auth\Tutor\Interface\VariableTutor;
 use App\Http\Controllers\Controller;
+use App\Http\Controllers\Tutor\Requests\RequestCreateTutor;
 use App\Models\Tutor\Tutor;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Symfony\Component\HttpFoundation\Response;
 use Tymon\JWTAuth\Exceptions\JWTException;
 
-class TutorController extends Controller
+class TutorController extends Controller implements VariableTutor
 {
     /**
      * @var Tutor|null
@@ -21,18 +26,21 @@ class TutorController extends Controller
     /**
      * @throws \Exception
      */
-    public function store(Request $request)
+    public function store(RequestCreateTutor $request)
     {
         try {
             DB::beginTransaction();
-            $this->tutor = Tutor::create($request->all());
+            $tutor = (new Tutor)->fill($request->all());
+            $tutor->role_id = EnumRoles::USUARIO;
+            $tutor->active = EnumGeneralStatus::ATIVADO;
+            $tutor->inserir();
             $this->setSucesso();
             DB::commit();
         } catch (\Exception $exception)
         {
             DB::rollBack();
             return response()->json([
-                'error' => $exception->getMessage()
+                self::ERRORS => $exception->getMessage()
             ]);
         } catch (JWTException $exception)
         {

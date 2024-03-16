@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Tutor\Requests;
 
 use App\Http\Controllers\Auth\Tutor\Interface\VariableTutor;
+use App\Messages\MessageTutor;
 use App\Messages\MessageUser;
 use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Foundation\Http\FormRequest;
@@ -23,16 +24,17 @@ class RequestCreateTutor extends FormRequest implements VariableTutor
             self::PASSWORD => 'required',
             self::CPF => 'required',
             self::EMAIL => 'required',
-            self::ID_ROLE => 'required',
-            self::ID_GENDER => 'required',
         ];
     }
 
     public function messages()
     {
         return [
-            self::USERNAME.'.required' => MessageUser::USR006,
-            self::PASSWORD.'.required' => MessageUser::USR007,
+            self::NAME.'.required' => MessageTutor::CLT006,
+            self::USERNAME.'.required' => MessageTutor::CLT007,
+            self::PASSWORD.'.required' => MessageTutor::CLT008,
+            self::CPF.'.required' => MessageTutor::CLT009,
+            self::EMAIL.'.required' => MessageTutor::CLT010,
         ];
     }
 
