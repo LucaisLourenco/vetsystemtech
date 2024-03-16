@@ -3,6 +3,7 @@
 use App\Http\Controllers\Auth\Tutor\AuthTutorsController;
 use App\Http\Controllers\Auth\User\AuthUsersController;
 use App\Http\Controllers\Auth\Veterinarian\AuthVeterinariansController;
+use App\Http\Controllers\Tutor\TutorController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -11,7 +12,7 @@ Route::group(['prefix' => 'user'], function () {
     Route::group(['middleware' => 'auth.jwt:api'], function () {
         Route::get('me', [AuthUsersController::class, 'me']);
         Route::post('logout', [AuthUsersController::class, 'logout']);
-        Route::post('createTutor', [\App\Http\Controllers\Tutor\TutorController::class, 'store']);
+        Route::post('createTutor', [TutorController::class, 'store']);
     });
 });
 
