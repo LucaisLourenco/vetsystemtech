@@ -2,9 +2,7 @@
 
 namespace App\Http\Controllers\Auth\User\Interface;
 
-use App\Http\Controllers\Obrigatorio\Interface\VariableRequired;
-
-interface VariableAuthUser extends VariableRequired
+interface VariableAuthUser
 {
     const PASSWORD = 'password';
     const USERNAME = 'username';
