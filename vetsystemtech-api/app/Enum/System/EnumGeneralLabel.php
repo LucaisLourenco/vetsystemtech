@@ -7,7 +7,7 @@ enum EnumGeneralLabel
     const MASCULINO = 'Masculino';
     const FEMININO = 'Feminino';
     const OUTROS = 'Outros';
-    const ADMINISTRADOR = 'administrador';
+    const ADMINISTRADOR = 'Administrador';
     const USUARIO = 'Usuário';
     const CLIENTE = 'Cliente';
     const ATIVADO = 'Ativado';
