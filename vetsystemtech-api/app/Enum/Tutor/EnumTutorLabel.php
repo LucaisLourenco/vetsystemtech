@@ -2,7 +2,7 @@
 
 namespace App\Enum\Tutor;
 
-enum EnumRotuloTutor
+enum EnumTutorLabel
 {
 
 }

@@ -2,6 +2,8 @@
 
 namespace Database\Seeders;
 
+use App\Enum\Gender\EnumGenders;
+use App\Models\Gender\Gender;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 
@@ -12,12 +14,10 @@ class SeedGender extends Seeder
      */
     public function run(): void
     {
-        $genders = [
-            ['name' => 'Masculino'],
-            ['name' => 'Feminino'],
-            ['name' => 'Prefiro não responder'],
-        ];
-
-        DB::table('genders')->insert($genders);
+        foreach (EnumGenders::getArray() as $gender) {
+            if ($gender instanceof Gender) {
+                $gender->insertIfDoesNotExist();
+            }
+        }
     }
 }

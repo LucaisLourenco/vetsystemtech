@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Enum\Sistema;
+namespace App\Enum\System;
 
 use App\Models\ClassePadrao\ClassePadrao;
 
-class EnumStatusGeral
+class EnumGeneralStatus
 {
     const ATIVADO = 1;
     const DESATIVADO = 2;
@@ -15,11 +15,11 @@ class EnumStatusGeral
 
         $status[self::ATIVADO] = (new ClassePadrao())
             ->setId(self::ATIVADO)
-            ->setDescricao('Ativado');
+            ->setDescricao(EnumGeneralLabel::ATIVADO);
 
         $status[self::DESATIVADO] = (new ClassePadrao())
             ->setId(self::DESATIVADO)
-            ->setDescricao('Desativado');
+            ->setDescricao(EnumGeneralLabel::DESATIVADO);
 
         return $status;
     }
