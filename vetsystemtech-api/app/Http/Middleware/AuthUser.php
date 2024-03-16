@@ -12,7 +12,7 @@ class AuthUser implements VariableStandard
     public function handle($request, Closure $next)
     {
         if (!Auth::guard(self::API)->check()) {
-            return response()->json([self::ERROR => MessageUser::USR008], 401);
+            return response()->json([self::ERRORS => MessageUser::USR008], 401);
         }
 
         return $next($request);
