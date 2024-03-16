@@ -2,14 +2,14 @@
 
 namespace App\Http\Controllers\Auth\Veterinarian;
 
-use App\Http\Controllers\Auth\Veterinarian\Interface\VariableAuthVeterinarian;
+use App\Http\Controllers\Auth\Veterinarian\Interface\VariableVeterinarian;
 use App\Http\Controllers\Controller;
 use App\Messages\MessageVeterinarian;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Tymon\JWTAuth\Exceptions\JWTException;
 
-class AuthVeterinariansController extends Controller implements VariableAuthVeterinarian
+class VeterinariansController extends Controller implements VariableVeterinarian
 {
     public function login(Request $request): JsonResponse
     {

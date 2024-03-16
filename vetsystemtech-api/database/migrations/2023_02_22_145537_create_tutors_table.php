@@ -36,7 +36,7 @@ return new class extends Migration
             $table->string(static::$cpf)->unique();
             $table->unsignedBigInteger(static::$idRole);
             $table->foreign(static::$idRole)->references(static::$onColumnRoles)->on(static::$asTableRoles);
-            $table->unsignedBigInteger(static::$idGender);
+            $table->unsignedBigInteger(static::$idGender)->nullable();
             $table->foreign(static::$idGender)->references(static::$onColumnGenders)->on(static::$asTableGenders);
             $table->string(static::$email)->unique();
             $table->date(static::$birth)->nullable();

@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Auth\User\Interface;
 
-interface VariableAuthUser
+interface VariableUser
 {
     const PASSWORD = 'password';
     const USERNAME = 'username';

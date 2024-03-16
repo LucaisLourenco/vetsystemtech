@@ -3,13 +3,13 @@
 namespace App\Http\Controllers\Auth\User;
 
 use App\Http\Controllers\Auth\Requests\RequestLogin;
-use App\Http\Controllers\Auth\User\Interface\VariableAuthUser;
+use App\Http\Controllers\Auth\User\Interface\VariableUser;
 use App\Http\Controllers\Controller;
 use App\Messages\MessageUser;
 use Illuminate\Http\JsonResponse;
 use Tymon\JWTAuth\Exceptions\JWTException;
 
-class AuthUsersController extends Controller implements VariableAuthUser
+class UsersController extends Controller implements VariableUser
 {
     public function login(RequestLogin $request): JsonResponse
     {

@@ -2,14 +2,14 @@
 
 namespace App\Http\Controllers\Auth\Tutor;
 
-use App\Http\Controllers\Auth\Tutor\Interface\VariableAuthTutor;
+use App\Http\Controllers\Auth\Tutor\Interface\VariableTutor;
 use App\Http\Controllers\Controller;
 use App\Messages\MessageTutor;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Tymon\JWTAuth\Exceptions\JWTException;
 
-class AuthTutorsController extends Controller implements VariableAuthTutor
+class TutorsController extends Controller implements VariableTutor
 {
     public function login(Request $request): JsonResponse
     {

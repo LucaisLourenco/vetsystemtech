@@ -1,32 +1,32 @@
 <?php
 
-use App\Http\Controllers\Auth\Tutor\AuthTutorsController;
-use App\Http\Controllers\Auth\User\AuthUsersController;
-use App\Http\Controllers\Auth\Veterinarian\AuthVeterinariansController;
+use App\Http\Controllers\Auth\Tutor\TutorsController;
+use App\Http\Controllers\Auth\User\UsersController;
+use App\Http\Controllers\Auth\Veterinarian\VeterinariansController;
 use App\Http\Controllers\Tutor\TutorController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
-Route::post('login', [AuthUsersController::class, 'login']);
+Route::post('login', [UsersController::class, 'login']);
 Route::group(['middleware' => 'authUser.jwt:api'], function () {
-    Route::get('me', [AuthUsersController::class, 'me']);
-    Route::post('logout', [AuthUsersController::class, 'logout']);
+    Route::get('me', [UsersController::class, 'me']);
+    Route::post('logout', [UsersController::class, 'logout']);
     Route::post('createTutor', [TutorController::class, 'store']);
 });
 
 Route::group(['prefix' => 'tutor'], function () {
-    Route::post('login', [AuthTutorsController::class, 'login']);
+    Route::post('login', [TutorsController::class, 'login']);
     Route::group(['middleware' => 'auth.jwt:tutor'], function () {
-        Route::get('me', [AuthTutorsController::class, 'me']);
-        Route::post('logout', [AuthTutorsController::class, 'logout']);
+        Route::get('me', [TutorsController::class, 'me']);
+        Route::post('logout', [TutorsController::class, 'logout']);
     });
 });
 
 Route::group(['prefix' => 'veterinarian'], function () {
-    Route::post('login', [AuthVeterinariansController::class, 'login']);
+    Route::post('login', [VeterinariansController::class, 'login']);
     Route::group(['middleware' => 'auth.jwt:veterinarian'], function () {
-        Route::get('me', [AuthVeterinariansController::class, 'me']);
-        Route::post('logout', [AuthVeterinariansController::class, 'logout']);
+        Route::get('me', [VeterinariansController::class, 'me']);
+        Route::post('logout', [VeterinariansController::class, 'logout']);
     });
 });
 

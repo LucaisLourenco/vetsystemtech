@@ -1,15 +1,14 @@
 <?php
 
-namespace App\Http\Controllers\Auth\Requests;
+namespace App\Http\Controllers\Tutor\Requests;
 
-use App\Http\Controllers\Auth\User\Interface\VariableUser;
+use App\Http\Controllers\Auth\Tutor\Interface\VariableTutor;
 use App\Messages\MessageUser;
 use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Http\Exceptions\HttpResponseException;
 
-
-class RequestLogin extends FormRequest implements VariableUser
+class RequestCreateTutor extends FormRequest implements VariableTutor
 {
     public function authorize()
     {
@@ -19,8 +18,13 @@ class RequestLogin extends FormRequest implements VariableUser
     public function rules()
     {
         return [
+            self::NAME => 'required',
             self::USERNAME => 'required',
             self::PASSWORD => 'required',
+            self::CPF => 'required',
+            self::EMAIL => 'required',
+            self::ID_ROLE => 'required',
+            self::ID_GENDER => 'required',
         ];
     }
 

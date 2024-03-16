@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Auth\Veterinarian\Interface;
 
-interface VariableAuthVeterinarian
+interface VariableVeterinarian
 {
     const VETERINARIAN = 'veterinarian';
     const PASSWORD = 'password';
