@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use App\Models\Tutor\Tutor;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Symfony\Component\HttpFoundation\Response;
+use Tymon\JWTAuth\Exceptions\JWTException;
 
 class TutorController extends Controller
 {
@@ -32,15 +34,20 @@ class TutorController extends Controller
             return response()->json([
                 'error' => $exception->getMessage()
             ]);
-        }
-        finally {
-            if ($this->getSucesso())
-            {
-                return response()->json([
-                    'message' => 'Tutor created successfully',
-                    'tutor' => $this->tutor
-                ], 201);
-            }
+        } catch (JWTException $exception)
+        {
+            DB::rollBack();
+            return response()->json([
+                'error' => 'Token JWT não encontrado'
+            ], Response::HTTP_UNAUTHORIZED);
+        } finally {
+//            if ($this->getSucesso())
+//            {
+//                return response()->json([
+//                    'message' => 'Tutor created successfully',
+//                    'tutor' => $this->tutor
+//                ], 201);
+//            }
         }
     }
 

@@ -6,4 +6,5 @@ interface VariableStandard
 {
     const ERROR = 'error';
     const ERRORS = 'errors';
+    const API = 'api';
 }

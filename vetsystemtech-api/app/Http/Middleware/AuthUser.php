@@ -2,15 +2,17 @@
 
 namespace App\Http\Middleware;
 
+use App\Http\Controllers\Required\Interfaces\VariableStandard;
+use App\Messages\MessageUser;
 use Closure;
 use Illuminate\Support\Facades\Auth;
 
-class AuthUser
+class AuthUser implements VariableStandard
 {
     public function handle($request, Closure $next)
     {
-        if (!Auth::guard('api')->check()) {
-            return response()->json(['error' => 'Não autorizado para não usuários.'], 401);
+        if (!Auth::guard(self::API)->check()) {
+            return response()->json([self::ERROR => MessageUser::USR008], 401);
         }
 
         return $next($request);

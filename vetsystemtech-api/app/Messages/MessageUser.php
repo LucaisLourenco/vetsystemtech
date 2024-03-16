@@ -11,4 +11,5 @@ class MessageUser
     const USR005 = 'Usuário desconectado com sucesso';
     const USR006 = 'O campo username é obrigatório.';
     const USR007 = 'O campo password é obrigatório.';
+    const USR008 = 'Não autorizado para não usuários.';
 }
