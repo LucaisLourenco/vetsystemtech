@@ -2,9 +2,14 @@
 
 namespace App\Http\Controllers\Auth\Veterinarian\Interface;
 
-use App\Http\Controllers\Obrigatorio\Interface\VariableRequired;
-
-interface VariableAuthVeterinarian extends VariableRequired
+interface VariableAuthVeterinarian
 {
     const VETERINARIAN = 'veterinarian';
+    const PASSWORD = 'password';
+    const USERNAME = 'username';
+    const ERROR = 'error';
+    const ERRORS = 'errors';
+    const TOKEN = 'token';
+    const MESSAGE = 'message';
+    const API = 'api';
 }
