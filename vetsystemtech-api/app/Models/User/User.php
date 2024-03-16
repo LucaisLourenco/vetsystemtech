@@ -64,4 +64,9 @@ class User extends Authenticatable implements JWTSubject
     {
         return $this->password;
     }
+
+    public function insertIfDoesNotExist()
+    {
+        return static::firstOrCreate($this->getAttributes());
+    }
 }
