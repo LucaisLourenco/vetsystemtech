@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Requests;
+namespace App\Http\Controllers\Auth\Requests;
 
 use App\Http\Controllers\Auth\User\Interface\VariableAuthUser;
 use App\Messages\MessageUser;

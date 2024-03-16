@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers\Auth\User;
 
+use App\Http\Controllers\Auth\Requests\RequestLogin;
 use App\Http\Controllers\Auth\User\Interface\VariableAuthUser;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\RequestLogin;
 use App\Messages\MessageUser;
 use Illuminate\Http\JsonResponse;
 use Tymon\JWTAuth\Exceptions\JWTException;
