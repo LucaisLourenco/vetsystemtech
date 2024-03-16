@@ -17,4 +17,5 @@ class MessageTutor
     const CLT011 = 'Já existe cliente cadastrado para o USERNAME informado.';
     const CLT012 = 'Já existe cliente cadastrado para o CFP informado.';
     const CLT013 = 'Já existe cliente cadastrado para o E-MAIL informado.';
+    const CLT014 = 'Cliente cadastrado com sucesso.';
 }

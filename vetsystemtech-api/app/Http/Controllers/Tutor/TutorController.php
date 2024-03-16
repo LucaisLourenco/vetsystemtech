@@ -2,17 +2,14 @@
 
 namespace App\Http\Controllers\Tutor;
 
-use App\Enum\Gender\EnumGenders;
 use App\Enum\Role\EnumRoles;
 use App\Enum\System\EnumGeneralStatus;
 use App\Http\Controllers\Auth\Tutor\Interface\VariableTutor;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\Tutor\Requests\RequestCreateTutor;
+use App\Messages\MessageTutor;
 use App\Models\Tutor\Tutor;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-use Symfony\Component\HttpFoundation\Response;
-use Tymon\JWTAuth\Exceptions\JWTException;
 
 class TutorController extends Controller implements VariableTutor
 {
@@ -28,9 +25,11 @@ class TutorController extends Controller implements VariableTutor
      */
     public function store(RequestCreateTutor $request)
     {
+        $tutor = (new Tutor);
+
         try {
             DB::beginTransaction();
-            $tutor = (new Tutor)->fill($request->all());
+            $tutor->fill($request->all());
             $tutor->role_id = EnumRoles::USUARIO;
             $tutor->active = EnumGeneralStatus::ATIVADO;
             $tutor->save();
@@ -43,13 +42,13 @@ class TutorController extends Controller implements VariableTutor
                 self::ERRORS => $exception->getMessage()
             ]);
         } finally {
-//            if ($this->getSucesso())
-//            {
-//                return response()->json([
-//                    'message' => 'Tutor created successfully',
-//                    'tutor' => $this->tutor
-//                ], 201);
-//            }
+            if ($this->getSucesso())
+            {
+                return response()->json([
+                    self::MESSAGE => MessageTutor::CLT014,
+                    self::TUTOR => $tutor
+                ], 201);
+            }
         }
     }
 
