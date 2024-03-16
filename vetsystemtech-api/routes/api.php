@@ -7,13 +7,11 @@ use App\Http\Controllers\Tutor\TutorController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
-Route::group(['prefix' => 'user'], function () {
-    Route::post('login', [AuthUsersController::class, 'login']);
-    Route::group(['middleware' => 'auth.jwt:api'], function () {
-        Route::get('me', [AuthUsersController::class, 'me']);
-        Route::post('logout', [AuthUsersController::class, 'logout']);
-        Route::post('createTutor', [TutorController::class, 'store']);
-    });
+Route::post('login', [AuthUsersController::class, 'login']);
+Route::group(['middleware' => 'auth.jwt:api'], function () {
+    Route::get('me', [AuthUsersController::class, 'me']);
+    Route::post('logout', [AuthUsersController::class, 'logout']);
+    Route::post('createTutor', [TutorController::class, 'store']);
 });
 
 Route::group(['prefix' => 'tutor'], function () {
