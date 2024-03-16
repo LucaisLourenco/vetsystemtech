@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Auth\Tutor\Interface;
 
 interface VariableTutor
 {
+    const TABLE_TUTOR = 'tutors';
     const TUTOR = 'tutor';
     const PASSWORD = 'password';
     const USERNAME = 'username';
@@ -12,7 +13,6 @@ interface VariableTutor
     const TOKEN = 'token';
     const MESSAGE = 'message';
     const API = 'api';
-
     const ID = 'id';
     const NAME = 'name';
     const CPF = 'cpf';

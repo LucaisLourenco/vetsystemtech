@@ -33,7 +33,7 @@ class TutorController extends Controller implements VariableTutor
             $tutor = (new Tutor)->fill($request->all());
             $tutor->role_id = EnumRoles::USUARIO;
             $tutor->active = EnumGeneralStatus::ATIVADO;
-            $tutor->inserir();
+            $tutor->save();
             $this->setSucesso();
             DB::commit();
         } catch (\Exception $exception)
@@ -42,12 +42,6 @@ class TutorController extends Controller implements VariableTutor
             return response()->json([
                 self::ERRORS => $exception->getMessage()
             ]);
-        } catch (JWTException $exception)
-        {
-            DB::rollBack();
-            return response()->json([
-                'error' => 'Token JWT não encontrado'
-            ], Response::HTTP_UNAUTHORIZED);
         } finally {
 //            if ($this->getSucesso())
 //            {
