@@ -8,6 +8,7 @@ enum EnumGeneralLabel
     const FEMININO = 'Feminino';
     const OUTROS = 'Outros';
     const ADMINISTRADOR = 'administrador';
+    const USUARIO = 'Usuário';
     const CLIENTE = 'Cliente';
     const ATIVADO = 'Ativado';
     const DESATIVADO = 'Desativado';

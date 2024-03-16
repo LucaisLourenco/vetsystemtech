@@ -2,9 +2,9 @@
 
 namespace Database\Seeders;
 
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use App\Enum\Role\EnumRoles;
+use App\Models\Role\Role;
 use Illuminate\Database\Seeder;
-use Illuminate\Support\Facades\DB;
 
 class SeedRole extends Seeder
 {
@@ -13,12 +13,10 @@ class SeedRole extends Seeder
      */
     public function run(): void
     {
-        $roles = [
-            ['name' => 'Administrador'],
-            ['name' => 'Usuário FULL'],
-            ['name' => 'Usuário Comum'],
-        ];
-
-        DB::table('roles')->insert($roles);
+        foreach (EnumRoles::getArray() as $role) {
+            if ($role instanceof Role) {
+                $role->insertIfDoesNotExist();
+            }
+        }
     }
 }

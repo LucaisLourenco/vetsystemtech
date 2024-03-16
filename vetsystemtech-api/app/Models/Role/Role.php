@@ -14,4 +14,8 @@ class Role extends Model
 
     protected $fillable = ['name'];
 
+    public function insertIfDoesNotExist()
+    {
+        return static::firstOrCreate($this->getAttributes());
+    }
 }

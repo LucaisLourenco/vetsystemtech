@@ -7,6 +7,9 @@ use App\Models\Gender\Gender;
 
 enum EnumGenders
 {
+    private const ID = 'id';
+    private const NAME = 'name';
+
     const MASCULINO = 1;
     const FEMININO = 2;
     const OUTROS = 3;
@@ -15,9 +18,9 @@ enum EnumGenders
     {
         $genders = [];
 
-        $genders[self::MASCULINO] = (new Gender())->fill([Gender::$id => self::MASCULINO, Gender::$name => EnumGeneralLabel::MASCULINO]);
-        $genders[self::FEMININO] = (new Gender())->fill([Gender::$id => self::FEMININO, Gender::$name => EnumGeneralLabel::FEMININO]);
-        $genders[self::OUTROS] = (new Gender())->fill([Gender::$id => self::OUTROS, Gender::$name => EnumGeneralLabel::OUTROS]);
+        $genders[self::MASCULINO] = (new Gender())->fill([self::ID => self::MASCULINO, self::NAME => EnumGeneralLabel::MASCULINO]);
+        $genders[self::FEMININO] = (new Gender())->fill([self::ID => self::FEMININO, self::NAME => EnumGeneralLabel::FEMININO]);
+        $genders[self::OUTROS] = (new Gender())->fill([self::ID => self::OUTROS, self::NAME => EnumGeneralLabel::OUTROS]);
 
         return $genders;
     }
