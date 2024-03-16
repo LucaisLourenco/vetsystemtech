@@ -4,14 +4,14 @@ namespace App\Http\Controllers\Auth\User;
 
 use App\Http\Controllers\Auth\User\Interface\VariableAuthUser;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\LoginRequest;
+use App\Http\Requests\RequestLogin;
 use App\Messages\MessageUser;
 use Illuminate\Http\JsonResponse;
 use Tymon\JWTAuth\Exceptions\JWTException;
 
 class AuthUsersController extends Controller implements VariableAuthUser
 {
-    public function login(LoginRequest $request): JsonResponse
+    public function login(RequestLogin $request): JsonResponse
     {
         $credentials = $request->only(self::USERNAME, self::PASSWORD);
 

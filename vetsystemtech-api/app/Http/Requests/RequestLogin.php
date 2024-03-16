@@ -9,7 +9,7 @@ use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Http\Exceptions\HttpResponseException;
 
 
-class LoginRequest extends FormRequest implements VariableAuthUser
+class RequestLogin extends FormRequest implements VariableAuthUser
 {
     public function authorize()
     {
