@@ -55,7 +55,8 @@ class TutorController extends Controller implements VariableTutor
 
     public function destroy(RequestDeleteTutor $request)
     {
-        var_export($request);
+        var_dump($request);
+        return false;
     }
 
     protected function getSucesso(): bool
