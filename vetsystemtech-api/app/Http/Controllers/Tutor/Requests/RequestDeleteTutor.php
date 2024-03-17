@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\Tutor\Requests;
 
 use App\Http\Controllers\Auth\Tutor\Interface\VariableTutor;
-use App\Messages\MessageTutor;
 use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Http\Exceptions\HttpResponseException;
@@ -18,16 +17,7 @@ class RequestDeleteTutor extends FormRequest implements VariableTutor
     public function rules()
     {
         return [
-            self::USERNAME => 'required_without_all:'.self::CPF.','.self::EMAIL,
-            self::CPF => 'required_without_all:'.self::USERNAME.','.self::EMAIL,
-            self::EMAIL => 'required_without_all:'.self::USERNAME.','.self::CPF,
-        ];
-    }
-
-    public function messages()
-    {
-        return [
-
+            self::CPF => 'required',
         ];
     }
 

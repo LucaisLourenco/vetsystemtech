@@ -18,4 +18,6 @@ class MessageTutor
     const CLT012 = 'Já existe cliente cadastrado para o CFP informado.';
     const CLT013 = 'Já existe cliente cadastrado para o E-MAIL informado.';
     const CLT014 = 'Cliente cadastrado com sucesso.';
+    const CLT015 = 'Cliente não encontrado para o CPF informado.';
+    const CLT016 = 'Cliente excluído com sucesso.';
 }

@@ -36,15 +36,13 @@ class TutorController extends Controller implements VariableTutor
             $tutor->save();
             $this->setSucesso();
             DB::commit();
-        } catch (\Exception $exception)
-        {
+        } catch (\Exception $exception) {
             DB::rollBack();
             return response()->json([
                 self::ERRORS => $exception->getMessage()
             ]);
         } finally {
-            if ($this->getSucesso())
-            {
+            if ($this->getSucesso()) {
                 return response()->json([
                     self::MESSAGE => MessageTutor::CLT014,
                     self::TUTOR => $tutor
@@ -55,8 +53,31 @@ class TutorController extends Controller implements VariableTutor
 
     public function destroy(RequestDeleteTutor $request)
     {
-        var_dump($request);
-        return false;
+
+        try {
+            DB::beginTransaction();
+
+            $tutor = Tutor::where(self::CPF, $request->all()[self::CPF])->first();
+
+            if ($tutor instanceof Tutor) {
+                $tutor->delete();
+            } else {
+                throw new \Exception(MessageTutor::CLT015);
+            }
+            $this->setSucesso();
+            DB::commit();
+        } catch (\Exception $exception) {
+            DB::rollBack();
+            return response()->json([
+                self::ERRORS => $exception->getMessage()
+            ]);
+        } finally {
+            if ($this->getSucesso()) {
+                return response()->json([
+                    self::MESSAGE => MessageTutor::CLT016,
+                ], 201);
+            }
+        }
     }
 
     protected function getSucesso(): bool
