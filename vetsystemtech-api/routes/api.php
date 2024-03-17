@@ -12,6 +12,7 @@ Route::group(['middleware' => 'authUser.jwt:api'], function () {
     Route::get('me', [UsersController::class, 'me']);
     Route::post('logout', [UsersController::class, 'logout']);
     Route::post('createTutor', [TutorController::class, 'store']);
+    Route::delete('deleteTutor', [TutorController::class, 'destroy']);
 });
 
 Route::group(['prefix' => 'tutor'], function () {

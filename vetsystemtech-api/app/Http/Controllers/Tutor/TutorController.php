@@ -7,6 +7,7 @@ use App\Enum\System\EnumGeneralStatus;
 use App\Http\Controllers\Auth\Tutor\Interface\VariableTutor;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\Tutor\Requests\RequestCreateTutor;
+use App\Http\Controllers\Tutor\Requests\RequestDeleteTutor;
 use App\Messages\MessageTutor;
 use App\Models\Tutor\Tutor;
 use Illuminate\Support\Facades\DB;
@@ -50,6 +51,11 @@ class TutorController extends Controller implements VariableTutor
                 ], 201);
             }
         }
+    }
+
+    public function destroy(RequestDeleteTutor $request)
+    {
+        var_export($request);
     }
 
     protected function getSucesso(): bool
