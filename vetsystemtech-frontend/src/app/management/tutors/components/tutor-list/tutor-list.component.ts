@@ -12,7 +12,7 @@ export class TutorListComponent {
   @Output() edit = new EventEmitter(false);
   @Output() delete = new EventEmitter(false);
 
-  readonly displayedColumns = ['email', 'cpf', 'actions'];
+  readonly displayedColumns = ['name', 'email', 'cpf', 'actions'];
 
   onAdd() {
     this.add.emit(true);
