@@ -15,7 +15,6 @@ export class TutorsService {
   constructor(private http: HttpClient) { }
 
   list() {
-    console.log( this.http.get<Tutor[]>(this.API));
     return this.http.get<Tutor[]>(this.API).pipe(
       tap(tutors => console.log(tutors))
     );
