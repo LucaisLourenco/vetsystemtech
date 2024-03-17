@@ -17,11 +17,39 @@ mat-card {
 }
 
 mat-card-title {
-  font-size: 25px;
-  text-align: center;
-  margin-bottom: 1rem;
-  font-weight: 600;
-  color: #494646 ;
+  font-family: 'Comic Sans MS', cursive;
+  background-color: #fffde7;
+  border-radius: 50% 50% 0 0 / 100% 100% 0 0;
+  color: #343a40;
+  display: flex;
+  align-items: center;
+  font-size: 2.3rem;
+  font-weight: 700;
+  justify-content: center;
+  padding: 0.1rem 1rem;
+  text-transform: uppercase;
+  width: fit-content;
+  margin: 1rem auto;
+
+  animation: fillLetters 3s ease-in-out infinite
+}
+
+@keyframes fillLetters {
+  0% {
+    color: #f8f9fa;
+    text-shadow: 0 0 10px #f8f9fa;
+    border-radius: 50%;
+  }
+  50% {
+    color: #343a40;
+    text-shadow: 0 0 10px #343a40;
+    border-radius: 50%;
+  }
+  100% {
+    color: #f8f9fa;
+    text-shadow: 0 0 10px #f8f9fa;
+    border-radius: 50%;
+  }
 }
 
 mat-form-field {
