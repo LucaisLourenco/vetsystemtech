@@ -1,8 +1,9 @@
-import { Component } from '@angular/core';
-import { NonNullableFormBuilder, Validators } from '@angular/forms';
-import { MatSnackBar } from '@angular/material/snack-bar';
-import { ActivatedRoute, Router } from '@angular/router';
-import { AuthUserService } from 'src/app/management/services/user/auth/auth-user.service';
+import {Component} from '@angular/core';
+import {NonNullableFormBuilder, Validators} from '@angular/forms';
+import {MatSnackBar} from '@angular/material/snack-bar';
+import {ActivatedRoute, Router} from '@angular/router';
+import {AuthUserService} from 'src/app/management/services/user/auth/auth-user.service';
+import {HOME_ROUTE, RESET_PASSWORD_ROUTE} from "../../../utils/routes-constants";
 
 @Component({
   selector: 'app-user-login',
@@ -24,7 +25,8 @@ export class UserLoginComponent {
     private service: AuthUserService,
     private router: Router,
     private route: ActivatedRoute
-  ) { }
+  ) {
+  }
 
   onSubmit() {
     const username = this.form.value.username;
@@ -33,7 +35,7 @@ export class UserLoginComponent {
     if (username && password) {
       this.service.login(username, password).subscribe(
         () => {
-          this.router.navigate(['home']);
+          this.router.navigate([HOME_ROUTE]).then(r => true);
         },
         (error) => {
           this.onError(error);
@@ -43,10 +45,10 @@ export class UserLoginComponent {
   }
 
   private onError(errorMessage: string) {
-    this.snackBar.open(errorMessage, '', { duration: 5000 });
+    this.snackBar.open(errorMessage, '', {duration: 5000});
   }
 
   onResetPassword() {
-    this.router.navigate(['reset-password']);
+    this.router.navigate([RESET_PASSWORD_ROUTE]).then(r => true);
   }
 }
