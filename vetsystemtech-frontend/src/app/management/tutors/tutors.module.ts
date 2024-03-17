@@ -1,12 +1,11 @@
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { TutorsComponent } from './tutors.component';
-import {ResponsaveisRoutingModule} from "./tutors-routing.module";
+import {NgModule} from '@angular/core';
+import {CommonModule} from '@angular/common';
+import {TutorsComponent} from './tutors.component';
+import {TutorsRoutingModule} from "./tutors-routing.module";
 import {AppMaterialModule} from "../../shared/app-material/app-material.module";
 import {SharedModule} from "../../shared/shared.module";
 import {ReactiveFormsModule} from "@angular/forms";
-import { TutorListComponent } from './components/tutor-list/tutor-list.component';
-
+import {TutorListComponent} from './components/tutor-list/tutor-list.component';
 
 
 @NgModule({
@@ -16,10 +15,11 @@ import { TutorListComponent } from './components/tutor-list/tutor-list.component
   ],
   imports: [
     CommonModule,
-    ResponsaveisRoutingModule,
+    TutorsRoutingModule,
     AppMaterialModule,
     SharedModule,
     ReactiveFormsModule
   ]
 })
-export class TutorsModule { }
+export class TutorsModule {
+}
