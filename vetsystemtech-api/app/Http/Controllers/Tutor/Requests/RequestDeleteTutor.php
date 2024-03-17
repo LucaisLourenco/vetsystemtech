@@ -27,14 +27,7 @@ class RequestDeleteTutor extends FormRequest implements VariableTutor
     public function messages()
     {
         return [
-            self::NAME.'.required' => MessageTutor::CLT006,
-            self::USERNAME.'.required' => MessageTutor::CLT007,
-            self::PASSWORD.'.required' => MessageTutor::CLT008,
-            self::CPF.'.required' => MessageTutor::CLT009,
-            self::EMAIL.'.required' => MessageTutor::CLT010,
-            self::USERNAME.'.unique' => MessageTutor::CLT011,
-            self::CPF.'.unique' => MessageTutor::CLT012,
-            self::EMAIL.'.unique' => MessageTutor::CLT013,
+
         ];
     }
 
