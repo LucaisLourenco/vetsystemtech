@@ -1,7 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { first } from 'rxjs';
+import {delay, first} from 'rxjs';
 import {Tutor} from "../model/tutor";
+import {tap} from "rxjs/operators";
 
 @Injectable({
   providedIn: 'root'
@@ -15,8 +16,8 @@ export class TutorsService {
   list() {
     return this.http.get<Tutor[]>(this.API).pipe(
       first(),
-      //delay(5000),
-      //tap(responsaveis => console.log(responsaveis))
+      delay(5000),
+      tap(responsaveis => console.log(responsaveis))
     );
   }
 
