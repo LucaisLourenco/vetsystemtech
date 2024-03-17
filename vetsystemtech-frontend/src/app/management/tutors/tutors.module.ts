@@ -5,12 +5,14 @@ import {ResponsaveisRoutingModule} from "./tutors-routing.module";
 import {AppMaterialModule} from "../../shared/app-material/app-material.module";
 import {SharedModule} from "../../shared/shared.module";
 import {ReactiveFormsModule} from "@angular/forms";
+import { TutorListComponent } from './components/tutor-list/tutor-list.component';
 
 
 
 @NgModule({
   declarations: [
-    TutorsComponent
+    TutorsComponent,
+    TutorListComponent
   ],
   imports: [
     CommonModule,
