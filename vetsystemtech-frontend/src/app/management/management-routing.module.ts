@@ -15,7 +15,11 @@ const routes: Routes = [
       { path: '', pathMatch: 'full', redirectTo: 'home' },
       { path: 'home', component: HomeComponent, canActivate: [UserGuard] },
       { path: 'login', component: UserLoginComponent, canActivate: [DisconnectedUserGuard] },
-      { path: 'reset-password', component: UserResetPasswordComponent, canActivate: [DisconnectedUserGuard] }
+      { path: 'reset-password', component: UserResetPasswordComponent, canActivate: [DisconnectedUserGuard] },
+      {
+        path: 'tutors',
+        loadChildren: () => import('./tutors/tutors.module').then(m => m.TutorsModule)
+      }
     ],
   },
 ];
