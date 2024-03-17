@@ -1,7 +1,7 @@
 import {Component} from '@angular/core';
 import {AuthUserService} from "../../services/user/auth/auth-user.service";
 import {Router} from "@angular/router";
-import {Urls} from "../../../enum/enumVariaveisSistema";
+import {AppRoutes} from "../../shared/app-routes";
 
 @Component({
   selector: 'app-sidebar',
@@ -16,11 +16,11 @@ export class SidebarComponent {
   }
 
   logoff() {
-    this.serviceUser.logout().subscribe(()=>
-      this.router.navigate([Urls.LOGIN]));
+    this.serviceUser.logout().subscribe(() =>
+      this.router.navigate([AppRoutes.LOGIN]));
   }
 
   navigateHome() {
-    this.router.navigate([Urls.PAGINA_PADRAO]).then(r => true);
+    this.router.navigate([AppRoutes.PAGINA_PADRAO]).then(r => true);
   }
 }
