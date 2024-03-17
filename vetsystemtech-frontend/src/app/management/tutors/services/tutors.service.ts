@@ -17,12 +17,12 @@ export class TutorsService {
     return this.http.get<Tutor[]>(this.API).pipe(
       first(),
       delay(5000),
-      tap(responsaveis => console.log(responsaveis))
+      tap(tutors => console.log(tutors))
     );
   }
 
   save(tutor: Partial<Tutor>) {
-    if (tutor.id) {
+    if (tutor.cpf) {
       return this.update(tutor);
     }
 
@@ -38,7 +38,7 @@ export class TutorsService {
   }
 
   private update(tutor: Partial<Tutor>) {
-    return this.http.put<Tutor>(`${this.API}/${tutor.id}`, tutor).pipe(first());
+    return this.http.put<Tutor>(`${this.API}/${tutor.cpf}`, tutor).pipe(first());
   }
 
   delete(cpf: string) {

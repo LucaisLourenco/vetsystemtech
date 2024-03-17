@@ -10,6 +10,7 @@ use App\Http\Controllers\Tutor\Requests\RequestCreateTutor;
 use App\Http\Controllers\Tutor\Requests\RequestDeleteTutor;
 use App\Messages\MessageTutor;
 use App\Models\Tutor\Tutor;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\DB;
 
 class TutorController extends Controller implements VariableTutor
@@ -20,6 +21,12 @@ class TutorController extends Controller implements VariableTutor
     protected Tutor|null $tutor;
 
     protected bool $sucesso = false;
+
+    public function index(): JsonResponse
+    {
+        $tutors = Tutor::all();
+        return response()->json([self::TUTORS => $tutors], 200);
+    }
 
     /**
      * @throws \Exception

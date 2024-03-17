@@ -6,6 +6,7 @@ interface VariableTutor
 {
     const TABLE_TUTOR = 'tutors';
     const TUTOR = 'tutor';
+    const TUTORS = 'tutors';
     const PASSWORD = 'password';
     const USERNAME = 'username';
     const ERROR = 'error';
