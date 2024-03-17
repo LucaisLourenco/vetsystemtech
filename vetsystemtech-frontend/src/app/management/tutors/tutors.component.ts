@@ -32,6 +32,8 @@ export class TutorsComponent {
     this.tutors$ = this.tutorsService.list().pipe(
       catchError(error => {
         this.onError("Ouve um erro ao carregar os dados.");
+
+        console.log(error);
         return of([]);
       })
     );

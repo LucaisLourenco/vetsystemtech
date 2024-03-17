@@ -3,13 +3,14 @@ import { Injectable } from '@angular/core';
 import {delay, first} from 'rxjs';
 import {Tutor} from "../model/tutor";
 import {tap} from "rxjs/operators";
+import {environment} from "../../../../environments/environment.development";
 
 @Injectable({
   providedIn: 'root'
 })
 export class TutorsService {
 
-  private readonly API = 'api/tutors';
+  private readonly API = environment.apiUrlTutors;
 
   constructor(private http: HttpClient) { }
 
