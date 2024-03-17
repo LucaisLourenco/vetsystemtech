@@ -27,13 +27,6 @@ import {HTTP_INTERCEPTORS} from "@angular/common/http";
     ReactiveFormsModule,
     SharedModule,
     ManagementRoutingModule
-  ],
-  providers: [
-    {
-      provide: HTTP_INTERCEPTORS,
-      useClass: ManagementInterceptor,
-      multi: true
-    }
   ]
 })
 export class ManagementModule { }
