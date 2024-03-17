@@ -23,4 +23,6 @@ export class SidebarComponent {
   navigateHome() {
     this.router.navigate([AppRoutes.PAGINA_PADRAO]).then(r => true);
   }
+
+  protected readonly AppRoutes = AppRoutes;
 }
