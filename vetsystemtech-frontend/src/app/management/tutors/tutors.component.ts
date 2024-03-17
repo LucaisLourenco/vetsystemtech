@@ -28,7 +28,6 @@ export class TutorsComponent {
   tutors$: Observable<Tutor[]> | null = null;
 
   refresh() {
-    console.log(this.tutorsService.list())
     this.tutors$ = this.tutorsService.list().pipe(
       catchError(error => {
         this.onError("Ouve um erro ao carregar os dados.");
