@@ -7,13 +7,12 @@ import {Tutor} from "../../model/tutor";
   styleUrls: ['./tutor-list.component.scss']
 })
 export class TutorListComponent {
-
   @Input() tutors: Tutor[] = [];
   @Output() add = new EventEmitter(false);
   @Output() edit = new EventEmitter(false);
   @Output() delete = new EventEmitter(false);
 
-  readonly displayedColumns = ['nome', 'email', 'cpf', 'actions'];
+  readonly displayedColumns = ['email', 'cpf', 'actions'];
 
   onAdd() {
     this.add.emit(true);
