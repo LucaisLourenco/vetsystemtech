@@ -34,8 +34,6 @@ export class TutorsComponent {
         return of([]);
       })
     );
-
-    console.log(this.tutors$);
   }
 
   onError(errorMsg: string) {
