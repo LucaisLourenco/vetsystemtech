@@ -1,6 +1,6 @@
-import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
-import {delay, first} from 'rxjs';
+import {HttpClient} from '@angular/common/http';
+import {Injectable} from '@angular/core';
+import {delay, first, map, Observable} from 'rxjs';
 import {Tutor} from "../model/tutor";
 import {tap} from "rxjs/operators";
 import {environment} from "../../../../environments/environment.development";
@@ -12,11 +12,12 @@ export class TutorsService {
 
   private readonly API = environment.apiUrlTutors;
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {
+  }
 
-  list() {
-    return this.http.get<Tutor[]>(this.API).pipe(
-      tap(tutors => console.log(tutors))
+  list(): Observable<Tutor[]> {
+    return this.http.get<any>(this.API).pipe(
+      map(response => response.tutors)
     );
   }
 
