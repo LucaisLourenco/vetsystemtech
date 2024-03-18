@@ -58,7 +58,7 @@ export class TutorsComponent {
 
     dialogRef.afterClosed().subscribe((result: boolean) => {
       if (result) {
-        this.tutorsService.delete(tutor.id).subscribe(
+        this.tutorsService.delete(tutor.cpf).subscribe(
           () => {
             this.refresh();
             this.snackBar.open('Resposável removido com sucesso.', 'x', {
