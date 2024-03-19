@@ -11,7 +11,6 @@ Route::post('login', [UsersController::class, 'login']);
 Route::group(['middleware' => 'authUser.jwt:api'], function () {
     Route::get('me', [UsersController::class, 'me']);
     Route::post('logout', [UsersController::class, 'logout']);
-
     Route::resource('tutors', TutorController::class);
 });
 
