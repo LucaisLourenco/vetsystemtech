@@ -17,7 +17,7 @@ class RequestDeleteTutor extends FormRequest implements VariableTutor
     public function rules()
     {
         return [
-            self::CPF => 'required',
+            self::ID => 'required',
         ];
     }
 

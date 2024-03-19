@@ -8,6 +8,7 @@ use App\Http\Controllers\Auth\Tutor\Interface\VariableTutor;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\Tutor\Requests\RequestCreateTutor;
 use App\Http\Controllers\Tutor\Requests\RequestDeleteTutor;
+use App\Http\Controllers\Tutor\Requests\RequestEditTutor;
 use App\Messages\MessageTutor;
 use App\Models\Tutor\Tutor;
 use Illuminate\Http\JsonResponse;
@@ -58,13 +59,20 @@ class TutorController extends Controller implements VariableTutor
         }
     }
 
+    public function show(RequestEditTutor $request): JsonResponse
+    {
+        $tutor = Tutor::where(self::ID, $request->all()[self::ID])->first();;
+
+        return response()->json([self::TUTOR => $tutor], 200);
+    }
+
     public function destroy(RequestDeleteTutor $request)
     {
 
         try {
             DB::beginTransaction();
 
-            $tutor = Tutor::where(self::CPF, $request->all()[self::CPF])->first();
+            $tutor = Tutor::where(self::ID, $request->all()[self::ID])->first();
 
             if ($tutor instanceof Tutor) {
                 $tutor->delete();
