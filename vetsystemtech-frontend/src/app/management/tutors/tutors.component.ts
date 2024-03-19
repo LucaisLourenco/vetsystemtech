@@ -8,6 +8,9 @@ import {Observable, of} from "rxjs";
 import {ErrorDialogComponent} from "../../shared/components/error-dialog/error-dialog.component";
 import {Tutor} from "./model/tutor";
 import {ConfirmationDialogComponent} from "../../shared/components/confirmation-dialog/confirmation-dialog.component";
+import {TutorLabelsEnum} from "../shared/enums/tutor-labels.enum";
+import {TutorMessages} from "../shared/messages/tutor-messages";
+import {CREATE, EDIT} from "./utils/tutors-routes";
 
 @Component({
   selector: 'app-tutors',
@@ -30,7 +33,7 @@ export class TutorsComponent {
   refresh() {
     this.tutors$ = this.tutorsService.list().pipe(
       catchError(error => {
-        this.onError("Ouve um erro ao carregar os dados.");
+        this.onError(TutorMessages.TUR0003);
         return of([]);
       })
     );
@@ -43,17 +46,17 @@ export class TutorsComponent {
   }
 
   onAdd() {
-    this.router.navigate(['create'], {relativeTo: this.route}).then(r => true);
+    this.router.navigate([CREATE], {relativeTo: this.route}).then(r => true);
   }
 
   onEdit(tutor: Tutor) {
-    this.router.navigate(['edit', tutor.id], {relativeTo: this.route}).then(r => true);
+    this.router.navigate([EDIT, tutor.id], {relativeTo: this.route}).then(r => true);
   }
 
   onDelete(tutor: Tutor) {
 
     const dialogRef = this.dialog.open(ConfirmationDialogComponent, {
-      data: 'Deseja remover este responsável?',
+      data: TutorLabelsEnum.ROTULO_PERGUNTA_REMOVER_TUTOR,
     });
 
     dialogRef.afterClosed().subscribe((result: boolean) => {
@@ -61,13 +64,13 @@ export class TutorsComponent {
         this.tutorsService.delete(tutor.cpf).subscribe(
           () => {
             this.refresh();
-            this.snackBar.open('Resposável removido com sucesso.', 'x', {
+            this.snackBar.open(TutorMessages.TUR0001, 'x', {
               duration: 5000,
               verticalPosition: 'top',
               horizontalPosition: 'center'
             });
           },
-          error => this.onError('Ouve um erro ao remover o responsável.')
+          error => this.onError(TutorMessages.TUR0002)
         )
       }
     });
