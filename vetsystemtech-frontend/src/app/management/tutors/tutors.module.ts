@@ -6,12 +6,14 @@ import {AppMaterialModule} from "../../shared/app-material/app-material.module";
 import {SharedModule} from "../../shared/shared.module";
 import {ReactiveFormsModule} from "@angular/forms";
 import {TutorListComponent} from './components/tutor-list/tutor-list.component';
+import { TutorFormComponent } from './containers/tutor-form/tutor-form.component';
 
 
 @NgModule({
   declarations: [
     TutorsComponent,
-    TutorListComponent
+    TutorListComponent,
+    TutorFormComponent
   ],
   imports: [
     CommonModule,

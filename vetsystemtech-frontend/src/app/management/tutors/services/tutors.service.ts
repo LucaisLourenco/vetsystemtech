@@ -30,10 +30,10 @@ export class TutorsService {
   //
   //   return this.store(tutor);
   // }
-  //
-  // loadById(id: string) {
-  //   return this.http.get<Tutor>(`${this.API}/$\{id}\`)`);
-  // }
+
+  loadById(id: string) {
+    return this.http.get<Tutor>(`${this.API}/$\{id}\`)`);
+  }
   //
   // private store(tutor: Partial<Tutor>) {
   //   return this.http.post<Tutor>(this.API, tutor).pipe(first());
