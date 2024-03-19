@@ -18,7 +18,7 @@ const routes: Routes = [
       { path: 'reset-password', component: UserResetPasswordComponent, canActivate: [DisconnectedUserGuard] },
       {
         path: 'tutors',
-        loadChildren: () => import('./tutors/tutors.module').then(m => m.TutorsModule)
+        loadChildren: () => import('./tutors/tutors.module').then(m => m.TutorsModule) , canActivate: [UserGuard]
       }
     ],
   },

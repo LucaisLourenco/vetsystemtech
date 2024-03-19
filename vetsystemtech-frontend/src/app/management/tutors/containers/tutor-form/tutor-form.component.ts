@@ -1,4 +1,4 @@
-import {Component} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {Tutor} from "../../model/tutor";
 import {Location} from '@angular/common';
 import {ActivatedRoute} from "@angular/router";
@@ -11,7 +11,7 @@ import {NonNullableFormBuilder, Validators} from "@angular/forms";
   templateUrl: './tutor-form.component.html',
   styleUrls: ['./tutor-form.component.scss']
 })
-export class TutorFormComponent {
+export class TutorFormComponent implements OnInit {
   form = this.formBuilder.group({
     id: [''],
     name: ['', [Validators.required, Validators.minLength(5), Validators.maxLength(100)]],
