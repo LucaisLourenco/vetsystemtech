@@ -3,7 +3,7 @@ import {NonNullableFormBuilder, Validators} from '@angular/forms';
 import {MatSnackBar} from '@angular/material/snack-bar';
 import {ActivatedRoute, Router} from '@angular/router';
 import {AuthUserService} from 'src/app/management/services/user/auth/auth-user.service';
-import {HOME_ROUTE, RESET_PASSWORD_ROUTE} from "../../../utils/routes-constants";
+import {HOME_ROUTE, RESET_PASSWORD_ROUTE} from "../../../utils/management-routes.constants";
 
 @Component({
   selector: 'app-user-login',
