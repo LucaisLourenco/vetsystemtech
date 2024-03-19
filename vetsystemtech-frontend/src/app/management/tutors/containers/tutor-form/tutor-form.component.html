@@ -1,1 +1,29 @@
-<p>tutor-form works!</p>
+<mat-card>
+  <mat-card-content>
+    <mat-toolbar color="primary">Cadastro de Responsável</mat-toolbar>
+
+    <form [formGroup]="form" class="min-width">
+      <mat-form-field class="full-width">
+        <mat-label>Nome</mat-label>
+        <input type="text" matInput placeholder="example" formControlName="name" #name>
+      </mat-form-field>
+
+      <mat-form-field class="full-width">
+        <mat-label>E-mail</mat-label>
+        <input type="email" matInput placeholder="pat@example.com" formControlName="email" #email>
+      </mat-form-field>
+
+      <mat-form-field class="full-width">
+        <mat-label>CPF</mat-label>
+        <input matInput placeholder="000.000.000-00" formControlName="cpf" #cpf>
+      </mat-form-field>
+    </form>
+  </mat-card-content>
+
+  <mat-card-actions>
+    <div class="button-row">
+      <button mat-raised-button color="primary" (click)="onSubmit()" [disabled]="!form.valid">Salvar</button>
+      <button mat-raised-button (click)="onCancel()">Cancelar</button>
+    </div>
+  </mat-card-actions>
+</mat-card>

@@ -12,7 +12,8 @@ export class TutorsService {
 
   private readonly API = environment.apiUrl;
   private readonly ROUTE_TUTORS = '/tutors';
-  private readonly ROUTE_TUTOR_DELETE = '/tutors/destroy?cpf=';
+  private readonly ROUTE_TUTOR_DELETE = '/tutors/destroy?id=';
+  private readonly ROUTE_TUTOR_SHOW = '/tutors/?id=';
 
   constructor(private http: HttpClient) {
   }
@@ -23,27 +24,27 @@ export class TutorsService {
     );
   }
 
-  // save(tutor: Partial<Tutor>) {
-  //   if (tutor.cpf) {
-  //     return this.update(tutor);
-  //   }
-  //
-  //   return this.store(tutor);
-  // }
+  save(tutor: Partial<Tutor>) {
+    if (tutor.id) {
+      return this.update(tutor);
+    }
+
+    return this.store(tutor);
+  }
 
   loadById(id: string) {
-    return this.http.get<Tutor>(`${this.API}/$\{id}\`)`);
+    return this.http.get<Tutor>(`${this.API}${this.ROUTE_TUTOR_SHOW}${id}`);
   }
-  //
-  // private store(tutor: Partial<Tutor>) {
-  //   return this.http.post<Tutor>(this.API, tutor).pipe(first());
-  // }
-  //
-  // private update(tutor: Partial<Tutor>) {
-  //   return this.http.put<Tutor>(`${this.API}/${tutor.cpf}`, tutor).pipe(first());
-  // }
 
-  delete(cpf: string) {
-    return this.http.delete(`${this.API}${this.ROUTE_TUTOR_DELETE}${cpf}`).pipe(first());
+  private store(tutor: Partial<Tutor>) {
+    return this.http.post<Tutor>(this.API, tutor).pipe(first());
+  }
+
+  private update(tutor: Partial<Tutor>) {
+    return this.http.put<Tutor>(`${this.API}/${tutor.id}`, tutor).pipe(first());
+  }
+
+  delete(id: string) {
+    return this.http.delete(`${this.API}${this.ROUTE_TUTOR_DELETE}${id}`).pipe(first());
   }
 }
