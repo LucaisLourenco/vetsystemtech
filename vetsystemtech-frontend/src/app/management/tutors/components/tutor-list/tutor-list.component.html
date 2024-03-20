@@ -1,5 +1,7 @@
 <mat-table [dataSource]="tutors" class="mat-elevation-z8">
 
+<!--  <pagination-controls (pageChange)="onPageChange($event)"></pagination-controls>-->
+
   <ng-container matColumnDef="name">
     <mat-header-cell *matHeaderCellDef> Nome</mat-header-cell>
     <mat-cell *matCellDef="let element"> {{element.name}} </mat-cell>

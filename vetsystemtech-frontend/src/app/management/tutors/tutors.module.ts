@@ -7,6 +7,7 @@ import {SharedModule} from "../../shared/shared.module";
 import {ReactiveFormsModule} from "@angular/forms";
 import {TutorListComponent} from './components/tutor-list/tutor-list.component';
 import { TutorFormComponent } from './containers/tutor-form/tutor-form.component';
+import {NgxPaginationModule} from "ngx-pagination";
 
 
 @NgModule({
@@ -20,7 +21,8 @@ import { TutorFormComponent } from './containers/tutor-form/tutor-form.component
     TutorsRoutingModule,
     AppMaterialModule,
     SharedModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    NgxPaginationModule
   ]
 })
 export class TutorsModule {
