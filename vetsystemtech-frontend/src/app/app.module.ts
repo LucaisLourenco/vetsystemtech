@@ -1,11 +1,12 @@
 import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
-import { NgModule } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {NgModule} from '@angular/core';
+import {BrowserModule} from '@angular/platform-browser';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
-import { AppRoutingModule } from './app-routing.module';
-import { AppComponent } from './app.component';
+import {AppRoutingModule} from './app-routing.module';
+import {AppComponent} from './app.component';
 import {ManagementInterceptor} from "./management/services/management-interceptor";
+import {NgxPaginationModule} from "ngx-pagination";
 
 @NgModule({
   declarations: [AppComponent],
@@ -14,6 +15,7 @@ import {ManagementInterceptor} from "./management/services/management-intercepto
     AppRoutingModule,
     HttpClientModule,
     BrowserAnimationsModule,
+    NgxPaginationModule
   ], providers: [
     {
       provide: HTTP_INTERCEPTORS,
@@ -24,4 +26,5 @@ import {ManagementInterceptor} from "./management/services/management-intercepto
   ,
   bootstrap: [AppComponent],
 })
-export class AppModule {}
+export class AppModule {
+}
