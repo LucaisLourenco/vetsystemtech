@@ -47,7 +47,9 @@ return new class extends Migration
             $table->integer(static::$active);
             $table->softDeletes();
             $table->rememberToken();
+            
             $table->timestamps();
+
         });
     }
 
