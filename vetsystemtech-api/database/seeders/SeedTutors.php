@@ -12,7 +12,7 @@ class SeedTutors extends Seeder
 {
     public function run(): void
     {
-        for ($i = 0; $i < 1000; $i++) {
+        for ($i = 0; $i < 10000; $i++) {
             try {
 
                 DB::beginTransaction();
@@ -87,16 +87,22 @@ class SeedTutors extends Seeder
 
     protected function gerarEmail($nomeCompleto)
     {
-        // Obter o primeiro nome e o sobrenome do nome completo
-        $primeiroNome = $nomeCompleto[0];
-        $sobrenome = $nomeCompleto[1];
+        // Dividir o nome completo em partes: primeiro nome e sobrenome
+        $partesNome = explode(' ', $nomeCompleto);
 
-        // Converter o nome para minúsculas e substituir espaços por underscores
-        $primeiroNome = strtolower($primeiroNome);
-        $sobrenome = strtolower($sobrenome);
+        // Verificar se o nome completo possui pelo menos duas partes
+        if (count($partesNome) < 2) {
+            // Se não houver sobrenome, gerar um e-mail com base apenas no primeiro nome
+            $primeiroNome = strtolower($partesNome[0]);
+            $email = $primeiroNome . '@exemplo.com';
+        } else {
+            // Obter o primeiro nome e o sobrenome
+            $primeiroNome = strtolower($partesNome[0]);
+            $sobrenome = strtolower(end($partesNome));
 
-        // Formatar o endereço de e-mail
-        $email = $primeiroNome . '.' . $sobrenome . '@exemplo.com';
+            // Formatar o endereço de e-mail
+            $email = $primeiroNome . '.' . $sobrenome . '@exemplo.com';
+        }
 
         return $email;
     }
