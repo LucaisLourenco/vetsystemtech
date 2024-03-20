@@ -5,34 +5,43 @@ namespace Database\Seeders;
 use App\Models\Tutor\Tutor;
 use App\Models\User\User;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 
 class SeedTutors extends Seeder
 {
     public function run(): void
     {
-        for ($i = 0; $i < 10; $i++) {
-            $nome = $this->gerarNomes();
-            $email = $this->gerarEmail($nome);
-            $cpf = $this->gerarCPF();
-            $genero = $this->verificarGenero($nome);
-            $username = $this->gerarUsername($nome);
-            $aniversario = $this->gerarAniversario();
+        for ($i = 0; $i < 1000; $i++) {
+            try {
 
-            $tutor = (new Tutor())->fill([
-                'name' => $nome,
-                'username' => $username,
-                'cpf' => $cpf,
-                'role_id' => 2,
-                'gender_id' => $genero,
-                'email' => $email,
-                'birth' => $aniversario,
-                'password' => Hash::make('senha@1234'),
-                'active' => 1
-            ]);
+                DB::beginTransaction();
+                $nome = $this->gerarNomes();
+                $email = $this->gerarEmail($nome);
+                $cpf = $this->gerarCPF();
+                $genero = $this->verificarGenero($nome);
+                $username = $this->gerarUsername($nome);
+                $aniversario = $this->gerarAniversario();
+
+                $tutor = (new Tutor())->fill([
+                    'name' => $nome,
+                    'username' => $username,
+                    'cpf' => $cpf,
+                    'role_id' => 2,
+                    'gender_id' => $genero,
+                    'email' => $email,
+                    'birth' => $aniversario,
+                    'password' => Hash::make('senha@1234'),
+                    'active' => 1
+                ]);
+
+                $tutor->insertIfDoesNotExist();
+                DB::commit();
+            } catch (\Throwable $throwable) {
+                DB::rollBack();
+            }
         }
 
-        $tutor->insertIfDoesNotExist();
     }
 
     protected function gerarNomes()
