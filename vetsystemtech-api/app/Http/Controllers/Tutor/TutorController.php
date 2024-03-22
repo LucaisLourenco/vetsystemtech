@@ -8,13 +8,14 @@ use App\Http\Controllers\Auth\Tutor\Interface\VariableTutor;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\Tutor\Requests\RequestCreateTutor;
 use App\Http\Controllers\Tutor\Requests\RequestDeleteTutor;
+use App\Http\Controllers\Utils\Interfaces\VariableRequest;
 use App\Messages\MessageTutor;
 use App\Models\Tutor\Tutor;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\DB;
 use Symfony\Component\HttpFoundation\Request;
 
-class TutorController extends Controller implements VariableTutor
+class TutorController extends Controller implements VariableTutor, VariableRequest
 {
     /**
      * @var Tutor|null
@@ -25,7 +26,7 @@ class TutorController extends Controller implements VariableTutor
 
     public function index(Request $request): JsonResponse
     {
-        $pageSize = $request->input('per_page', 25);
+        $pageSize = $request->input(self::PER_PAGE, 25);
         $tutors = Tutor::paginate($pageSize);
 
         return response()->json($tutors, 200);
