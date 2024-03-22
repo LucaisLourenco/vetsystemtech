@@ -24,8 +24,8 @@ class TutorController extends Controller implements VariableTutor
 
     public function index(): JsonResponse
     {
-        $tutors = Tutor::all();
-        return response()->json([self::TUTORS => $tutors], 200);
+        $tutors = Tutor::paginate(25);
+        return response()->json($tutors, 200);
     }
 
     /**
