@@ -12,6 +12,7 @@ use App\Messages\MessageTutor;
 use App\Models\Tutor\Tutor;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\DB;
+use Symfony\Component\HttpFoundation\Request;
 
 class TutorController extends Controller implements VariableTutor
 {
@@ -22,9 +23,11 @@ class TutorController extends Controller implements VariableTutor
 
     protected bool $sucesso = false;
 
-    public function index(): JsonResponse
+    public function index(Request $request): JsonResponse
     {
-        $tutors = Tutor::paginate(25);
+        $pageSize = $request->input('per_page', 25);
+        $tutors = Tutor::paginate($pageSize);
+
         return response()->json($tutors, 200);
     }
 
