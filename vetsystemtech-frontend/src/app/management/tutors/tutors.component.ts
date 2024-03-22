@@ -30,8 +30,6 @@ export class TutorsComponent extends PaginationBaseComponent<any>{
     super(tutorsService);
   }
 
-  tutors$: Observable<Tutor[]> | null = null;
-
   onError(errorMsg: string) {
     this.dialog.open(ErrorDialogComponent, {
       data: errorMsg

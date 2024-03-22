@@ -12,7 +12,7 @@ export abstract class PaginationBaseService<T> {
   protected constructor(protected http: HttpClient) {
   }
 
-  getItems(page = 1): Observable<any> {
-    return this.http.get(`${this.endpoint}?page=${page}`);
+  getItems(page = 1, pageSize = 15): Observable<any> {
+    return this.http.get(`${this.endpoint}?page=${page}&per_page=${pageSize}`);
   }
 }

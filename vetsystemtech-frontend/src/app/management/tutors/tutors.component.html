@@ -2,18 +2,30 @@
   <mat-card-content>
     <mat-toolbar color="primary">Lista de tutores</mat-toolbar>
 
+
     <div class="column-flex mat-elevation-z8">
-      <app-tutor-list *ngIf="tutors$ | async as tutors; else: loading_spinner"
-                            [tutors]="tutors"
-                            (add)="onAdd()"
-                            (edit)="onEdit($event)"
-                            (delete)="onDelete($event)"
+      <app-tutor-list *ngIf="items$ | async as tutors; else: loading_spinner"
+                      [tutors]="tutors"
+                      (add)="onAdd()"
+                      (edit)="onEdit($event)"
+                      (delete)="onDelete($event)"
       ></app-tutor-list>
       <ng-template #loading_spinner>
         <div class="loading-spinner">
           <mat-spinner></mat-spinner>
         </div>
       </ng-template>
+
+      <mat-paginator
+        (page)="goToPage($event.pageIndex + 1, $event.pageSize)"
+        [length]="length"
+        [pageSize]="pageSize"
+        [pageIndex]="currentPage - 1"
+        [showFirstLastButtons]="true"
+        [pageSizeOptions]="[15, 25, 50, 100]"
+        [hidePageSize]="false"
+        aria-label="Select page">
+      </mat-paginator>
     </div>
   </mat-card-content>
 </mat-card>
