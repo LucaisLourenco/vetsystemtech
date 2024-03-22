@@ -4,25 +4,23 @@ import {first, map, Observable} from 'rxjs';
 import {Tutor} from "../model/tutor";
 import {tap} from "rxjs/operators";
 import {environment} from "../../../../environments/environment.development";
+import {PaginationBaseService} from "../../../core/base/pagination-base/pagination-base/pagination-base.service";
 
 @Injectable({
   providedIn: 'root'
 })
-export class TutorsService {
+export class TutorsService extends PaginationBaseService<any> {
+
 
   private readonly API = environment.apiUrl;
   private readonly ROUTE_TUTORS = '/tutors';
   private readonly ROUTE_TUTOR_DELETE = '/tutors/destroy?id=';
   private readonly ROUTE_TUTOR_SHOW = '/tutors/';
 
-  constructor(private http: HttpClient) {
-  }
+  protected endpoint = `${this.API}${this.ROUTE_TUTORS}`;
 
-  list(): Observable<Tutor[]> {
-    return this.http.get<any>(`${this.API}${this.ROUTE_TUTORS}`).pipe(
-      map(response => response.data),
-      tap(reponse => console.log(reponse))
-    );
+  constructor(override http: HttpClient) {
+    super(http);
   }
 
   save(tutor: Partial<Tutor>) {

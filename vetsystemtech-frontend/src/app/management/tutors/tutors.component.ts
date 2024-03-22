@@ -11,13 +11,15 @@ import {ConfirmationDialogComponent} from "../../shared/components/confirmation-
 import {TutorLabelsEnum} from "../shared/enums/tutor-labels.enum";
 import {TutorMessages} from "../shared/messages/tutor-messages";
 import {CREATE, EDIT} from "./utils/tutors-routes";
+import {PaginationService} from "ngx-pagination";
+import {PaginationBaseComponent} from "../../core/base/pagination-base/pagination-base/pagination-base.component";
 
 @Component({
   selector: 'app-tutors',
   templateUrl: './tutors.component.html',
   styleUrls: ['./tutors.component.scss']
 })
-export class TutorsComponent {
+export class TutorsComponent extends PaginationBaseComponent<any>{
   constructor(
     private tutorsService: TutorsService,
     public dialog: MatDialog,
@@ -25,19 +27,10 @@ export class TutorsComponent {
     private route: ActivatedRoute,
     private snackBar: MatSnackBar
   ) {
-    this.refresh();
+    super(tutorsService);
   }
 
   tutors$: Observable<Tutor[]> | null = null;
-
-  refresh() {
-    this.tutors$ = this.tutorsService.list().pipe(
-      catchError(error => {
-        this.onError(TutorMessages.TUR0003);
-        return of([]);
-      })
-    );
-  }
 
   onError(errorMsg: string) {
     this.dialog.open(ErrorDialogComponent, {
@@ -63,7 +56,7 @@ export class TutorsComponent {
       if (result) {
         this.tutorsService.delete(tutor.cpf).subscribe(
           () => {
-            this.refresh();
+            this.loadItems(1);
             this.snackBar.open(TutorMessages.TUR0001, 'x', {
               duration: 5000,
               verticalPosition: 'top',

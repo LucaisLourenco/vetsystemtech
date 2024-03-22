@@ -6,12 +6,12 @@ import {PaginationBaseService} from "./pagination-base.service";
   templateUrl: './pagination-base.component.html',
   styleUrls: ['./pagination-base.component.scss']
 })
-export class PaginationBaseComponent<T> implements OnInit {
+export abstract class PaginationBaseComponent<T> implements OnInit {
   items: T[] = [];
   currentPage = 1;
   totalPage = 1;
 
-  constructor(private paginationService: PaginationBaseService<T>) {
+  protected constructor(private paginationService: PaginationBaseService<T>) {
   }
 
   ngOnInit(): void {
