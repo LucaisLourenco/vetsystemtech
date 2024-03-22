@@ -20,7 +20,8 @@ export class TutorsService {
 
   list(): Observable<Tutor[]> {
     return this.http.get<any>(`${this.API}${this.ROUTE_TUTORS}`).pipe(
-      map(response => response.tutors)
+      map(response => response.data),
+      tap(reponse => console.log(reponse))
     );
   }
 

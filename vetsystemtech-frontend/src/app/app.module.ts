@@ -7,9 +7,10 @@ import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
 import {ManagementInterceptor} from "./management/services/management-interceptor";
 import {NgxPaginationModule} from "ngx-pagination";
+import { PaginationBaseComponent } from './core/base/pagination-base/pagination-base/pagination-base.component';
 
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [AppComponent, PaginationBaseComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
