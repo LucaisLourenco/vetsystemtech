@@ -1,9 +1,18 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
+import {HttpClient} from "@angular/common/http";
+import {Observable} from "rxjs";
 
 @Injectable({
   providedIn: 'root'
 })
-export class PaginationBaseService {
+export abstract class PaginationBaseService<T> {
 
-  constructor() { }
+  protected abstract endpoint: string;
+
+  protected constructor(protected http: HttpClient) {
+  }
+
+  getItems(page = 1): Observable<any> {
+    return this.http.get(`${this.endpoint}?page=${page}`);
+  }
 }
