@@ -19,7 +19,7 @@ import {PaginationBaseComponent} from "../../core/base/pagination-base/paginatio
   templateUrl: './tutors.component.html',
   styleUrls: ['./tutors.component.scss']
 })
-export class TutorsComponent extends PaginationBaseComponent<any>{
+export class TutorsComponent extends PaginationBaseComponent<any> {
   constructor(
     private tutorsService: TutorsService,
     public dialog: MatDialog,
