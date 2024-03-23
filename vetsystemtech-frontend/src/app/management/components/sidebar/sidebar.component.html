@@ -1,17 +1,12 @@
-<div class="sidebar-container">
-  <div class="sidebar">
-    <div class="sidebar-header">
-      <div class="brand">
-        <h3 class="sidebar-title">VetSystem <span>Tecnologia</span></h3>
-        <i class="fa fa-bars" id="sidebar-toggle" aria-hidden="true"></i>
-      </div>
-    </div>
-    <div class="sidebar-menu">
-      <ul>
-        <li><a (click)="navigateHome()" href="#">Home</a></li>
-        <li><a routerLink="{{AppRoutes.TUTORES}}">Tutores</a></li>
-        <li><a (click)="logoff()" href="#">Sair</a></li>
-      </ul>
-    </div>
+<div class="sidebar">
+  <div class="sidebar-header">
+    <h3 class="sidebar-title">VetSystem Tecnologia</h3>
+  </div>
+  <div class="sidebar-menu">
+    <ul>
+      <li><a (click)="navigateHome()" href="#">Home</a></li>
+      <li><a routerLink="{{AppRoutes.TUTORES}}">Tutores</a></li>
+      <li><a (click)="logoff()" href="#">Sair</a></li>
+    </ul>
   </div>
 </div>
