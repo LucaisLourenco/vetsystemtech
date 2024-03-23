@@ -6,7 +6,7 @@
   height: 100%;
   padding: 20px;
   transition: width 0.3s ease;
-  background: linear-gradient(to bottom, #d9f2e6, #b3ffd9);
+  background: linear-gradient(to bottom, #FFEFC6, #FFD980 );
   color: #333;
   overflow-y: auto;
 }
@@ -49,10 +49,10 @@
 }
 
 .sidebar-menu li a:hover {
-  background-color: #99e6b8; /* Tom mais escuro ao passar o mouse */
+  background-color: #FFD980;
 }
 
-/* Estilos adicionais para o ícone de fechar */
+
 .sidebar-close {
   position: absolute;
   top: 20px;
