@@ -1,10 +1,24 @@
-import { Component } from '@angular/core';
+import {Injectable} from '@angular/core';
+import {SelectionModel} from "@angular/cdk/collections";
 
-@Component({
-  selector: 'app-list-base',
-  templateUrl: './list-base.component.html',
-  styleUrls: ['./list-base.component.scss']
+@Injectable({
+    providedIn: 'root'
 })
-export class ListBaseComponent {
+export abstract class ListBaseComponent<T> {
 
+    selection = new SelectionModel<any>(true, []);
+
+    abstract get data(): T[];
+
+    masterToggle() {
+        this.isAllSelected() ?
+            this.selection.clear() :
+            this.data.forEach((row: T) => this.selection.select(row));
+    }
+
+    isAllSelected() {
+        const numSelected = this.selection.selected.length;
+        const numRows = this.data.length;
+        return numSelected === numRows;
+    }
 }
