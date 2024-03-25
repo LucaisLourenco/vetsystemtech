@@ -9,6 +9,7 @@ import {TutorListComponent} from './components/tutor-list/tutor-list.component';
 import { TutorFormComponent } from './containers/tutor-form/tutor-form.component';
 import {NgxPaginationModule} from "ngx-pagination";
 import {MatPaginatorModule} from "@angular/material/paginator";
+import {MatCheckboxModule} from "@angular/material/checkbox";
 
 
 @NgModule({
@@ -24,7 +25,8 @@ import {MatPaginatorModule} from "@angular/material/paginator";
     SharedModule,
     ReactiveFormsModule,
     NgxPaginationModule,
-    MatPaginatorModule
+    MatPaginatorModule,
+    MatCheckboxModule
   ]
 })
 export class TutorsModule {

@@ -4,7 +4,7 @@ import {first, map, Observable} from 'rxjs';
 import {Tutor} from "../model/tutor";
 import {tap} from "rxjs/operators";
 import {environment} from "../../../../environments/environment.development";
-import {PaginationBaseService} from "../../../core/base/pagination-base/pagination-base/pagination-base.service";
+import {PaginationBaseService} from "../../../core/base/pagination-base/pagination-base.service";
 
 @Injectable({
   providedIn: 'root'

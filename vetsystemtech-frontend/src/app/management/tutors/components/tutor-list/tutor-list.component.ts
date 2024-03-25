@@ -1,6 +1,7 @@
 import {Component, EventEmitter, Input, Output} from '@angular/core';
 import {Tutor} from "../../model/tutor";
 import {FormatData} from "../../../utils/format-data";
+import {SelectionModel} from "@angular/cdk/collections";
 
 @Component({
   selector: 'app-tutor-list',
@@ -16,7 +17,22 @@ export class TutorListComponent {
   constructor(public formatData: FormatData) {
   }
 
-  readonly displayedColumns = ['name', 'email', 'cpf', 'actions'];
+  readonly displayedColumns = ['select', 'name', 'email', 'cpf', 'actions'];
+
+  // No seu componente
+  selection = new SelectionModel<any>(true, []);
+
+  masterToggle() {
+    this.isAllSelected() ?
+      this.selection.clear() :
+      this.tutors.forEach(row => this.selection.select(row));
+  }
+
+  isAllSelected() {
+    const numSelected = this.selection.selected.length;
+    const numRows = this.tutors.length;
+    return numSelected === numRows;
+  }
 
   onAdd() {
     this.add.emit(true);

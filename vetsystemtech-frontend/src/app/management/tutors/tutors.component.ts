@@ -12,7 +12,7 @@ import {TutorLabelsEnum} from "../shared/enums/tutor-labels.enum";
 import {TutorMessages} from "../shared/messages/tutor-messages";
 import {CREATE, EDIT} from "./utils/tutors-routes";
 import {PaginationService} from "ngx-pagination";
-import {PaginationBaseComponent} from "../../core/base/pagination-base/pagination-base/pagination-base.component";
+import {PaginationBaseComponent} from "../../core/base/pagination-base/pagination-base.component";
 
 @Component({
   selector: 'app-tutors',
