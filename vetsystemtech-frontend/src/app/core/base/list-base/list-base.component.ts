@@ -10,6 +10,10 @@ export abstract class ListBaseComponent<T> {
 
     abstract get data(): T[];
 
+    getSelectedItems(): T[] {
+        return this.selection.selected;
+    }
+
     masterToggle() {
         this.isAllSelected() ?
             this.selection.clear() :
