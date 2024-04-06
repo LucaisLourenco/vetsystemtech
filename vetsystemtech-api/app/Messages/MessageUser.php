@@ -12,4 +12,5 @@ class MessageUser
     const USR006 = 'O campo username é obrigatório.';
     const USR007 = 'O campo password é obrigatório.';
     const USR008 = 'Não autorizado para não usuários.';
+    const USR009 = 'Não autorizado para não usuários.';
 }
