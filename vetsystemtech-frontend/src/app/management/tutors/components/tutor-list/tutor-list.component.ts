@@ -36,29 +36,7 @@ export class TutorListComponent extends ListBaseComponent<any> {
     return this.tutors;
   }
 
-  exportSelected() {
-    const selectedTutors = this.getSelectedItems();
-    const selectedColumns = ['name', 'email', 'cpf']; // Colunas que você deseja exportar
-
-    // Adicionando as colunas ao início dos dados CSV
-    const csvData = [selectedColumns.join(',')].concat(
-      selectedTutors.map(tutor => selectedColumns.map(column => tutor[column]).join(','))
-    ).join('\n');
-
-    // Criando um Blob com os dados CSV
-    const blob = new Blob([csvData], { type: 'text/csv' });
-
-    // Criando um URL temporário para o Blob e criando um link para download
-    const url = window.URL.createObjectURL(blob);
-    const a = document.createElement('a');
-    a.href = url;
-    a.download = 'selected_tutors.csv';
-    document.body.appendChild(a);
-    a.click();
-
-    // Liberando o URL temporário
-    window.URL.revokeObjectURL(url);
-    document.body.removeChild(a);
+  get data_export(): any[] {
+    return ['name', 'email', 'cpf'];
   }
-
 }
