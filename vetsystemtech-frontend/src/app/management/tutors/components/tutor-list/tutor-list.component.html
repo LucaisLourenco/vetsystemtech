@@ -17,17 +17,17 @@
 
   <ng-container matColumnDef="name">
     <mat-header-cell *matHeaderCellDef> Nome</mat-header-cell>
-    <mat-cell *matCellDef="let element"> {{element.name}} </mat-cell>
+    <mat-cell *matCellDef="let element"> {{ element.name }}</mat-cell>
   </ng-container>
 
   <ng-container matColumnDef="email">
     <mat-header-cell *matHeaderCellDef> E-mail</mat-header-cell>
-    <mat-cell *matCellDef="let element"> {{element.email}} </mat-cell>
+    <mat-cell *matCellDef="let element"> {{ element.email }}</mat-cell>
   </ng-container>
 
   <ng-container matColumnDef="cpf">
     <mat-header-cell *matHeaderCellDef> CPF</mat-header-cell>
-    <mat-cell *matCellDef="let element"> {{formatData.formatarCPF(element.cpf)}} </mat-cell>
+    <mat-cell *matCellDef="let element"> {{ formatData.formatarCPF(element.cpf) }}</mat-cell>
   </ng-container>
 
   <ng-container matColumnDef="actions">
