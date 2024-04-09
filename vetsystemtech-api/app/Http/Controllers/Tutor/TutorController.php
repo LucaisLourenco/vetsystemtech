@@ -37,28 +37,23 @@ class TutorController extends Controller implements VariableTutor, VariableReque
      */
     public function store(RequestCreateTutor $request)
     {
-        $tutor = (new Tutor);
 
         try {
-            DB::beginTransaction();
+            $tutor = (new Tutor);
             $tutor->fill($request->all());
             $tutor->role_id = EnumRoles::USUARIO;
             $tutor->active = EnumGeneralStatus::ATIVADO;
             $tutor->save();
             $this->setSucesso();
-            DB::commit();
+
+            return response()->json([
+                self::MESSAGE => MessageTutor::CLT014,
+                self::TUTOR => $tutor
+            ], 201);
         } catch (\Exception $exception) {
-            DB::rollBack();
             return response()->json([
                 self::ERRORS => $exception->getMessage()
             ]);
-        } finally {
-            if ($this->getSucesso()) {
-                return response()->json([
-                    self::MESSAGE => MessageTutor::CLT014,
-                    self::TUTOR => $tutor
-                ], 201);
-            }
         }
     }
 
