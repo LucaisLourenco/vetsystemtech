@@ -45,7 +45,6 @@ class TutorController extends Controller implements VariableTutor, VariableReque
             $tutor->active = EnumGeneralStatus::ATIVADO;
             $tutor->save();
             $this->setSucesso();
-
             return response()->json([
                 self::MESSAGE => MessageTutor::CLT014,
                 self::TUTOR => $tutor
