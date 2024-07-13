@@ -12,14 +12,14 @@ use App\Http\Controllers\Utils\Interfaces\VariableRequest;
 use App\Messages\MessageTutor;
 use App\Models\Tutor\Tutor;
 use Illuminate\Http\JsonResponse;
-use Illuminate\Support\Facades\Request;
+use Symfony\Component\HttpFoundation\Request;
 
 class TutorController extends Controller implements VariableTutor, VariableRequest
 {
 
     public function index(Request $request): JsonResponse
     {
-        $pageSize = $request->input(self::PER_PAGE, 25);
+        $pageSize = $request->get(self::PER_PAGE, 25);
         $tutors = Tutor::query()->paginate($pageSize);
 
 
