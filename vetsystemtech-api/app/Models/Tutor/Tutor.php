@@ -9,9 +9,16 @@ use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 use Tymon\JWTAuth\Contracts\JWTSubject;
 
+/**
+ * @property int $role_id
+ * @property int $active
+ */
 class Tutor extends Authenticatable implements JWTSubject
 {
-    use HasApiTokens, HasFactory, Notifiable, SoftDeletes;
+    use HasApiTokens;
+    use HasFactory;
+    use Notifiable;
+    use SoftDeletes;
 
     protected $dates = ['deleted_at'];
 
@@ -37,12 +44,16 @@ class Tutor extends Authenticatable implements JWTSubject
         'email_verified_at' => 'datetime',
     ];
 
+    public static function findOrFail(int $id)
+    {
+    }
+
     public function getJWTIdentifier()
     {
         return $this->getKey();
     }
 
-    public function getJWTCustomClaims()
+    public function getJWTCustomClaims(): array
     {
         return [];
     }
@@ -54,6 +65,6 @@ class Tutor extends Authenticatable implements JWTSubject
 
     public function insertIfDoesNotExist()
     {
-        return static::firstOrCreate($this->getAttributes());
+        return static::query()->firstOrCreate($this->getAttributes());
     }
 }

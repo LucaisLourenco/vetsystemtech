@@ -12,40 +12,31 @@ use App\Http\Controllers\Utils\Interfaces\VariableRequest;
 use App\Messages\MessageTutor;
 use App\Models\Tutor\Tutor;
 use Illuminate\Http\JsonResponse;
-use Illuminate\Support\Facades\DB;
-use Symfony\Component\HttpFoundation\Request;
+use Illuminate\Support\Facades\Request;
 
 class TutorController extends Controller implements VariableTutor, VariableRequest
 {
-    /**
-     * @var Tutor|null
-     */
-    protected Tutor|null $tutor;
-
-    protected bool $sucesso = false;
 
     public function index(Request $request): JsonResponse
     {
         $pageSize = $request->input(self::PER_PAGE, 25);
-        $tutors = Tutor::paginate($pageSize);
+        $tutors = Tutor::query()->paginate($pageSize);
 
-        
+
         return response()->json($tutors, 200);
     }
 
     /**
      * @throws \Exception
      */
-    public function store(RequestCreateTutor $request)
+    public function store(RequestCreateTutor $request): JsonResponse
     {
-
         try {
-            $tutor = (new Tutor);
+            $tutor = (new Tutor());
             $tutor->fill($request->all());
             $tutor->role_id = EnumRoles::USUARIO;
             $tutor->active = EnumGeneralStatus::ATIVADO;
             $tutor->save();
-            $this->setSucesso();
             return response()->json([
                 self::MESSAGE => MessageTutor::CLT014,
                 self::TUTOR => $tutor
@@ -59,47 +50,27 @@ class TutorController extends Controller implements VariableTutor, VariableReque
 
     public function show(int $id): JsonResponse
     {
-        $tutor = Tutor::findOrFail($id);
-
+        $tutor = Tutor::query()->findOrFail($id);
         return response()->json($tutor);
     }
 
-    public function destroy(RequestDeleteTutor $request)
+    public function destroy(RequestDeleteTutor $request): JsonResponse
     {
-
         try {
-            DB::beginTransaction();
-
-            $tutor = Tutor::where(self::ID, $request->all()[self::ID])->first();
+            $tutor = Tutor::query()->where(self::ID, $request->all()[self::ID])->first();
 
             if ($tutor instanceof Tutor) {
                 $tutor->delete();
             } else {
                 throw new \Exception(MessageTutor::CLT015);
             }
-            $this->setSucesso();
-            DB::commit();
+            return response()->json([
+                self::MESSAGE => MessageTutor::CLT016,
+            ], 201);
         } catch (\Exception $exception) {
-            DB::rollBack();
             return response()->json([
                 self::ERRORS => $exception->getMessage()
             ]);
-        } finally {
-            if ($this->getSucesso()) {
-                return response()->json([
-                    self::MESSAGE => MessageTutor::CLT016,
-                ], 201);
-            }
         }
-    }
-
-    protected function getSucesso(): bool
-    {
-        return $this->sucesso;
-    }
-
-    protected function setSucesso(bool $sucesso = true): void
-    {
-        $this->sucesso = $sucesso;
     }
 }
