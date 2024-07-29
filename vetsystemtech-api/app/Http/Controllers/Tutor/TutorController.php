@@ -6,6 +6,7 @@ use App\Http\Controllers\Auth\Tutor\Interface\VariableTutor;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\Tutor\Requests\RequestCreateTutor;
 use App\Http\Controllers\Tutor\Requests\RequestDeleteTutor;
+use App\Http\Controllers\Tutor\Requests\RequestEditTutor;
 use App\Http\Controllers\Tutor\Traits\TraitSupportTutor;
 use App\Http\Controllers\Utils\Interfaces\VariableRequest;
 use App\Messages\MessageSystem;
@@ -41,6 +42,24 @@ class TutorController extends Controller implements VariableTutor, VariableReque
             return response()->json([
                 self::ERRORS => $exception->getMessage()
             ]);
+        }
+    }
+
+    public function update(RequestEditTutor $request, $id): JsonResponse
+    {
+        try {
+            $tutor = Tutor::query()->where(self::ID, $id)->firstOrFail();
+            $tutor->update($request->all());
+            return response()->json([
+                self::MESSAGE => MessageTutor::CLT017,
+                self::TUTOR => $tutor
+            ], 200);
+        } catch (ModelNotFoundException $exception) {
+            return response()->json(MessageTutor::CLT015, 404);
+        } catch (\Exception $exception) {
+            return response()->json([
+                self::ERRORS => $exception->getMessage()
+            ], 500);
         }
     }
 

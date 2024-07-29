@@ -4,7 +4,7 @@ import {MatDialog} from "@angular/material/dialog";
 import {ActivatedRoute, Router} from "@angular/router";
 import {MatSnackBar} from "@angular/material/snack-bar";
 import {ErrorDialogComponent} from "../../shared/components/error-dialog/error-dialog.component";
-import {Tutor} from "./model/tutor";
+import {Tutor} from "./model/tutor.model";
 import {ConfirmationDialogComponent} from "../../shared/components/confirmation-dialog/confirmation-dialog.component";
 import {TutorLabelsEnum} from "../shared/enums/tutor-labels.enum";
 import {TutorMessages} from "../shared/messages/tutor-messages";

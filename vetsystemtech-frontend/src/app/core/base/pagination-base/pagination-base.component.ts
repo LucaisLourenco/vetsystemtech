@@ -1,7 +1,6 @@
 import {Injectable, OnInit, ViewChild} from '@angular/core';
 import {PaginationBaseService} from "./pagination-base.service";
 import {Observable, of} from "rxjs";
-import {Tutor} from "../../../management/tutors/model/tutor";
 import {MatPaginator} from "@angular/material/paginator";
 
 @Injectable({

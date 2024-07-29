@@ -20,4 +20,5 @@ enum MessageTutor
     public const CLT014 = 'Cliente cadastrado com sucesso.';
     public const CLT015 = 'Cliente não encontrado na base de dados do sistema.';
     public const CLT016 = 'Cliente excluído com sucesso.';
+    public const CLT017 = 'Cliente atualizado com sucesso.';
 }
