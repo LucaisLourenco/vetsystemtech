@@ -2,28 +2,28 @@
 
 namespace App\Http\Controllers\Tutor;
 
-use App\Enum\Role\EnumRoles;
-use App\Enum\System\EnumGeneralStatus;
 use App\Http\Controllers\Auth\Tutor\Interface\VariableTutor;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\Tutor\Requests\RequestCreateTutor;
 use App\Http\Controllers\Tutor\Requests\RequestDeleteTutor;
+use App\Http\Controllers\Tutor\Traits\TraitSupportTutor;
 use App\Http\Controllers\Utils\Interfaces\VariableRequest;
+use App\Messages\MessageSystem;
 use App\Messages\MessageTutor;
 use App\Models\Tutor\Tutor;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 
 class TutorController extends Controller implements VariableTutor, VariableRequest
 {
+    use TraitSupportTutor;
 
     public function index(Request $request): JsonResponse
     {
         $pageSize = $request->get(self::PER_PAGE, 25);
         $tutors = Tutor::query()->paginate($pageSize);
-
-
-        return response()->json($tutors, 200);
+        return response()->json($tutors);
     }
 
     /**
@@ -32,11 +32,7 @@ class TutorController extends Controller implements VariableTutor, VariableReque
     public function store(RequestCreateTutor $request): JsonResponse
     {
         try {
-            $tutor = (new Tutor());
-            $tutor->fill($request->all());
-            $tutor->role_id = EnumRoles::USUARIO;
-            $tutor->active = EnumGeneralStatus::ATIVADO;
-            $tutor->save();
+            $tutor = $this->createTutorByRequest($request);
             return response()->json([
                 self::MESSAGE => MessageTutor::CLT014,
                 self::TUTOR => $tutor
@@ -57,20 +53,15 @@ class TutorController extends Controller implements VariableTutor, VariableReque
     public function destroy(RequestDeleteTutor $request): JsonResponse
     {
         try {
-            $tutor = Tutor::query()->where(self::ID, $request->all()[self::ID])->first();
-
-            if ($tutor instanceof Tutor) {
-                $tutor->delete();
-            } else {
-                throw new \Exception(MessageTutor::CLT015);
-            }
+            $tutor = Tutor::query()->where(self::ID, $request->all()[self::ID])->firstOrFail();
+            $tutor->delete();
             return response()->json([
                 self::MESSAGE => MessageTutor::CLT016,
             ], 201);
+        } catch (ModelNotFoundException $exception) {
+            return response()->json(MessageTutor::CLT015, 404);
         } catch (\Exception $exception) {
-            return response()->json([
-                self::ERRORS => $exception->getMessage()
-            ]);
+            return response()->json(MessageSystem::SYS001, 500);
         }
     }
 }
