@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {Tutor} from "../../model/tutor";
+import {Tutor} from "../../model/tutor.model";
 import {Location} from '@angular/common';
 import {ActivatedRoute} from "@angular/router";
 import {MatSnackBar} from "@angular/material/snack-bar";
@@ -13,7 +13,7 @@ import {NonNullableFormBuilder, Validators} from "@angular/forms";
 })
 export class TutorFormComponent implements OnInit {
   form = this.formBuilder.group({
-    id: [''],
+    id: [0],
     name: ['', [Validators.required, Validators.minLength(5), Validators.maxLength(100)]],
     email: ['', [Validators.required, Validators.email]],
     cpf: ['', [Validators.required, Validators.minLength(14), Validators.maxLength(14)]]
@@ -37,7 +37,7 @@ export class TutorFormComponent implements OnInit {
   }
 
   onSubmit() {
-    this.service.save(this.form.value).subscribe(result => this.onSuccess(), error => this.onError());
+    this.service.save(this.form.value).subscribe(result => this.onSuccess(), error => console.log(error));
   }
 
   onCancel() {

@@ -1,5 +1,5 @@
 import {Component, EventEmitter, Input, Output} from '@angular/core';
-import {Tutor} from "../../model/tutor";
+import {Tutor} from "../../model/tutor.model";
 import {FormatData} from "../../../utils/format-data";
 import {ListBaseComponent} from "../../../../core/base/list-base/list-base.component";
 
