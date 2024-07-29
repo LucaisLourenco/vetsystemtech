@@ -2,26 +2,18 @@
 
 namespace App\Http\Controllers\Tutor\Requests;
 
-use App\Messages\MessageTutor;
 use App\Rules\CpfValidator;
-use App\Rules\UniqueCpf;
+use Illuminate\Validation\Rule;
 
-class RequestEditTutor extends RequestDeleteTutor
+class RequestEditTutor extends RequestCreateTutor
 {
     public function rules(): array
     {
-        $id = $this->route(self::ID);
+        $id = $this->input(self::ID);
 
         return [
             self::ID => 'required',
-            self::CPF => [new UniqueCpf(self::TABLE_TUTOR, self::CPF, $id), new CpfValidator()]
-        ];
-    }
-
-    public function messages(): array
-    {
-        return [
-            self::CPF . '.unique' => MessageTutor::CLT012,
+            self::CPF => [Rule::unique(self::TABLE_TUTOR)->ignore($id), new CpfValidator()]
         ];
     }
 }

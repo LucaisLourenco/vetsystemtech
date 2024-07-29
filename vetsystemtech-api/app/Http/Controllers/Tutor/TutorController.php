@@ -57,9 +57,7 @@ class TutorController extends Controller implements VariableTutor, VariableReque
         } catch (ModelNotFoundException $exception) {
             return response()->json(MessageTutor::CLT015, 404);
         } catch (\Exception $exception) {
-            return response()->json([
-                self::ERRORS => $exception->getMessage()
-            ], 500);
+            return response()->json($exception->getMessage(), 500);
         }
     }
 

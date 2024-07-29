@@ -5,6 +5,8 @@ import {ActivatedRoute} from "@angular/router";
 import {MatSnackBar} from "@angular/material/snack-bar";
 import {TutorsService} from "../../services/tutors.service";
 import {NonNullableFormBuilder, Validators} from "@angular/forms";
+import {HttpErrorResponse} from "@angular/common/http";
+import {isString} from "lodash";
 
 @Component({
   selector: 'app-tutor-form',
@@ -37,7 +39,7 @@ export class TutorFormComponent implements OnInit {
   }
 
   onSubmit() {
-    this.service.save(this.form.value).subscribe(result => this.onSuccess(), error => console.log(error));
+    this.service.save(this.form.value).subscribe(result => this.onSuccess(), error => this.onError(error));
   }
 
   onCancel() {
@@ -49,7 +51,15 @@ export class TutorFormComponent implements OnInit {
     this.location.back();
   }
 
-  private onError() {
-    this.snackBar.open('Erro ao salvar responsável.', '', {duration: 5000});
+  private onError(error: HttpErrorResponse) {
+    console.log(error)
+
+    let message = '';
+    if (isString(error.error)) {
+      message += error.error;
+    } else {
+      message += 'Não foi possível alterar o cadastro';
+    }
+    this.snackBar.open(message, '', {duration: 5000});
   }
 }

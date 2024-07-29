@@ -5,10 +5,10 @@ namespace App\Http\Controllers\Tutor\Requests;
 use App\Http\Controllers\Auth\Tutor\Interface\VariableTutor;
 use App\Messages\MessageTutor;
 use App\Rules\CpfValidator;
-use App\Rules\UniqueCpf;
 use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Http\Exceptions\HttpResponseException;
+use Illuminate\Validation\Rule;
 
 class RequestCreateTutor extends FormRequest implements VariableTutor
 {
@@ -23,7 +23,7 @@ class RequestCreateTutor extends FormRequest implements VariableTutor
             self::NAME => 'required',
             self::USERNAME => 'required|unique:' . self::TABLE_TUTOR,
             self::PASSWORD => 'required',
-            self::CPF => ['required', new UniqueCpf(self::TABLE_TUTOR), new CpfValidator()],
+            self::CPF => ['required', Rule::unique(self::TABLE_TUTOR), new CpfValidator()],
             self::EMAIL => 'required|unique:' . self::TABLE_TUTOR,
         ];
     }
@@ -46,5 +46,14 @@ class RequestCreateTutor extends FormRequest implements VariableTutor
     {
         $response = response()->json($validator->errors(), 422);
         throw new HttpResponseException($response);
+    }
+
+    protected function prepareForValidation(): void
+    {
+        if ($this->has(self::CPF)) {
+            $this->merge([
+                self::CPF => preg_replace('/\D/', '', $this->input(self::CPF))
+            ]);
+        }
     }
 }
