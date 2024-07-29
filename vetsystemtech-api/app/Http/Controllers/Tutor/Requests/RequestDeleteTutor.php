@@ -9,12 +9,12 @@ use Illuminate\Http\Exceptions\HttpResponseException;
 
 class RequestDeleteTutor extends FormRequest implements VariableTutor
 {
-    public function authorize()
+    public function authorize(): bool
     {
         return true; // Por padrão, permita que todos acessem esta solicitação
     }
 
-    public function rules()
+    public function rules(): array
     {
         return [
             self::ID => 'required',
