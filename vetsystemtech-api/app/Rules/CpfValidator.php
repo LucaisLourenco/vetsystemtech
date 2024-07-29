@@ -14,24 +14,14 @@ class CpfValidator implements ValidationRule
      * @param string $attribute
      * @param mixed $value
      * @param \Closure(string): void $fail
-     * @return void
      */
     public function validate(string $attribute, mixed $value, Closure $fail): void
     {
-        $cpf = $this->normalizeCpf($value);
+        $cpf = preg_replace('/\D/', '', $value);
 
         if (!$this->isValidCpf($cpf)) {
             $fail(MessageSystem::SYS002);
         }
-    }
-
-    /**
-     * @param mixed $value
-     * @return string
-     */
-    private function normalizeCpf(mixed $value): string
-    {
-        return preg_replace('/\D/', '', (string)$value);
     }
 
     /**
@@ -55,7 +45,6 @@ class CpfValidator implements ValidationRule
     {
         $firstDigit = $this->calculateDigit($cpf, 10);
         $secondDigit = $this->calculateDigit($cpf, 11, $firstDigit);
-
         return $firstDigit . $secondDigit;
     }
 
@@ -82,5 +71,4 @@ class CpfValidator implements ValidationRule
         $remainder = $sum % 11;
         return $remainder < 2 ? 0 : 11 - $remainder;
     }
-
 }

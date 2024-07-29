@@ -23,10 +23,7 @@ class RequestDeleteTutor extends FormRequest implements VariableTutor
 
     protected function failedValidation(Validator $validator)
     {
-        $response = response()->json([
-            self::ERRORS => $validator->errors()
-        ], 422);
-
+        $response = response()->json($validator->errors(), 422);
         throw new HttpResponseException($response);
     }
 

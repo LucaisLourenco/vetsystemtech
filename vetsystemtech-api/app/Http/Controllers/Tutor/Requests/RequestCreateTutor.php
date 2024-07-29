@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Tutor\Requests;
 
 use App\Http\Controllers\Auth\Tutor\Interface\VariableTutor;
 use App\Messages\MessageTutor;
+use App\Rules\CpfValidator;
 use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Http\Exceptions\HttpResponseException;
@@ -21,7 +22,7 @@ class RequestCreateTutor extends FormRequest implements VariableTutor
             self::NAME => 'required',
             self::USERNAME => 'required|unique:' . self::TABLE_TUTOR,
             self::PASSWORD => 'required',
-            self::CPF => 'required|unique:' . self::TABLE_TUTOR . 'cpf',
+            self::CPF => ['required', 'unique:' . self::TABLE_TUTOR, new CpfValidator()],
             self::EMAIL => 'required|unique:' . self::TABLE_TUTOR,
         ];
     }
@@ -42,10 +43,7 @@ class RequestCreateTutor extends FormRequest implements VariableTutor
 
     protected function failedValidation(Validator $validator)
     {
-        $response = response()->json([
-            self::ERRORS => $validator->errors()
-        ], 422);
-
+        $response = response()->json($validator->errors(), 422);
         throw new HttpResponseException($response);
     }
 }
