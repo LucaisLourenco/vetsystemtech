@@ -25,6 +25,9 @@ class TutorController extends Controller implements VariableTutor, VariableReque
         $pageSize = $request->get(self::PER_PAGE, 25);
         $tutors = Tutor::query()->paginate($pageSize);
         return response()->json($tutors);
+
+        //teste aqui também
+        
     }
 
     /**
