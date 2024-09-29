@@ -10,7 +10,7 @@ enum EnumGenders
     private const ID = 'id';
     private const NAME = 'name';
 
-    const MASCULINO = 1;
+    const MASCULINO = 4;
     const FEMININO = 2;
     const OUTROS = 3;
 
