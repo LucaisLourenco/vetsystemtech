@@ -26,7 +26,8 @@ class TutorController extends Controller implements VariableTutor, VariableReque
         $tutors = Tutor::query()->paginate($pageSize);
         return response()->json($tutors);
 
-        //teste aqui também
+        //teste aqui também tetsteterdsfd
+    
         
     }
 
