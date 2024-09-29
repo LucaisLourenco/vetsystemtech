@@ -17,5 +17,8 @@ trait TraitSupportTutor
         $tutor->active = EnumGeneralStatus::ATIVADO;
         $tutor->save();
         return $tutor;
+
+        //teste
+    
     }
 }
